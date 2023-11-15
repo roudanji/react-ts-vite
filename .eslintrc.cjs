@@ -67,7 +67,7 @@ module.exports = {
     'no-regex-spaces': 2, // 禁止在正则表达式字面量中使用多个空格 /foo bar/
     'no-restricted-modules': 0, // 如果禁用了指定模块，使用就会报错
     'no-throw-literal': 2, // 禁止抛出字面量错误 throw 'error';
-    // 'no-undef': 1, // 不能有未定义的变量
+    'no-undef': 1, // 不能有未定义的变量
     'no-undef-init': 2, // 变量初始化时不能直接给它赋值为undefined
     // 'no-undefined': 2, // 不能使用undefined
     'no-unexpected-multiline': 2, // 避免多行表达式

@@ -1,16 +1,14 @@
 // Router.tsx
 import { Skeleton } from 'antd';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-
-const Home = () => {
-    return <div>Home Component</div>;
-};
 
 
 const NotFound = () => {
     return <div>404</div>;
 };
+
+import Cccccc from '@/pages/test1';
 
 // 懒加载路由公用方法
 const lazyRouter = (routerComponent: React.ReactElement) => {
@@ -45,7 +43,7 @@ const Router = () => {
         <Routes>
             <Route
                 path="/"
-                element={<Home />}
+                element={<Cccccc />}
             />
 
             <Route
