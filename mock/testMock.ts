@@ -1,4 +1,4 @@
-import Mock from 'mockjs';
+import Mock from 'mockjs'
 // import { nanoid } from 'nanoid'
 
 const testData = [

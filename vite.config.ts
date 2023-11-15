@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
   optimizeDeps: {
@@ -27,9 +27,9 @@ export default defineConfig({
   server: {
     port: 8800,
     strictPort: true,
-    host: "0.0.0.0",
+    host: '0.0.0.0',
     proxy: {
-      "/api": "http://ip域名:端口"
+      '/api': 'http://ip域名:端口'
     },
   },
 });

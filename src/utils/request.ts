@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { notification } from 'antd';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { notification } from 'antd'
 
 
 // 接口返回类型定义
@@ -7,10 +8,10 @@ type PromiseData<T = any> = {
     code: number
     data?: T
     msg?: string
-};
+}
+
 
 notification.config({ maxCount: 3 });
-
 
 const serverCodeMessage: Record<number, string> = {
     200: '服务器成功返回请求的数据',
@@ -23,7 +24,6 @@ const serverCodeMessage: Record<number, string> = {
     503: '服务不可用，服务器暂时过载或维护(Service Unavailable)',
     504: '网关超时(Gateway Timeout)',
 };
-
 
 const whiteList = [''];
 
@@ -43,13 +43,13 @@ const service = axios.create({
 
 // 请求拦截器
 service.interceptors.request.use(
-    (config: AxiosRequestConfig) => {
+    (config) => {
         const TOKEN = 'token';
         const { headers, url } = config;
 
         if (TOKEN && headers && !whiteList.includes(url!.split('?')[0])) {
             // headers[settings.ajaxHeadersTokenKey] = TOKEN
-        };
+        }
         return config;
     },
     (error) => {

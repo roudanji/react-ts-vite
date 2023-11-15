@@ -1,7 +1,7 @@
 // Router.tsx
-import { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";  // 使用 Routes 和 Route
 import { Skeleton } from 'antd';
+import { Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 const Home = () => {
     return <div>Home Component</div>;
@@ -10,7 +10,7 @@ const Home = () => {
 
 const NotFound = () => {
     return <div>404</div>;
-}
+};
 
 // 懒加载路由公用方法
 const lazyRouter = (routerComponent: React.ReactElement) => {
@@ -18,8 +18,8 @@ const lazyRouter = (routerComponent: React.ReactElement) => {
         <Suspense fallback={<><Skeleton active /><Skeleton active /></>}>
             {routerComponent}
         </Suspense>
-    )
-}
+    );
+};
 
 const Lazy2 = () => {
     return (
