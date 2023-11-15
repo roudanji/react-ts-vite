@@ -6,11 +6,11 @@ module.exports = {
     },
      parser: '@typescript-eslint/parser',
     extends: [
+        'prettier',
         'eslint:recommended',
         'plugin:react/recommended',
-        'plugin:react-hooks/recommended',
         'plugin:jsx-a11y/recommended',
-        'prettier',
+        'plugin:react-hooks/recommended',
         'plugin:@typescript-eslint/recommended'
     ],
     parserOptions: {
@@ -30,6 +30,7 @@ module.exports = {
     // "off"可以替换成0，代表关闭该规则
     // "warn"可以替换成1，代表打开规则，提示警告，但不会报错
     // "error"可以替换成2，代表打开规则，直接报错
+    
     'no-var': 2, // 不能使用var声明变量
     'no-extra-semi': 2, // 禁止多余的冒号
     semi: 2,
