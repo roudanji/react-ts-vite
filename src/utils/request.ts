@@ -36,8 +36,8 @@ const showErrorNotification = (code: number | string | undefined, messageError: 
 
 // 创建 Axios 实例
 const service = axios.create({
-    baseURL: 'http://localhost:8800', // 设置基础URL
-    timeout: 10000, // 设置请求超时时间
+    baseURL: import.meta.env.VITE_API_BASE_URL, 
+    timeout: 10000, 
 });
 
 
