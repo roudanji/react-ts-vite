@@ -7,16 +7,8 @@ const Home = () => {
     return <div>Home Component</div>;
 };
 
-const SubRoute1 = () => {
-    return <div>Sub Route 1 Component</div>;
-};
 
-const SubRoute2 = () => {
-    return <div>Sub Route 2 Component</div>;
-};
-
-
-const notFound = () => {
+const NotFound = () => {
     return <div>404</div>;
 }
 
@@ -29,8 +21,24 @@ const lazyRouter = (routerComponent: React.ReactElement) => {
     )
 }
 
-const MyLazyComponent1 = lazy(() => import('@/pages/test1'))
-const MyLazyComponent2 = lazy(() => import('@/pages/test2'))
+const Lazy2 = () => {
+    return (
+        <Routes>
+            <Route
+                path="*"
+                element={lazyRouter(<div>xx</div>)}
+            />
+            <Route
+                path="/sub1"
+                element={lazyRouter(<div>Lazy2 Sub1</div>)}
+            />
+            <Route
+                path="/sub2"
+                element={lazyRouter(<div>Lazy2 Sub2</div>)}
+            />
+        </Routes>
+    );
+};
 
 const Router = () => {
     return (
@@ -41,21 +49,13 @@ const Router = () => {
             />
 
             <Route
-                path="/lazy1"
-                element={lazyRouter(<MyLazyComponent1 />)}
-            >
-                <Route path="/lazy1/sub1" element={lazyRouter(<SubRoute1 />)} />
-                <Route path="/lazy1/sub2" element={lazyRouter(<SubRoute2 />)} />
-            </Route>
-
-            <Route
-                path="/lazy2"
-                element={lazyRouter(<MyLazyComponent2 />)}
+                path="/lazy2/*"
+                element={<Lazy2 />}
             />
 
             <Route
                 path="*"
-                element={lazyRouter(<SubRoute2 />)}
+                element={lazyRouter(<NotFound />)}
             />
         </Routes>
     );
