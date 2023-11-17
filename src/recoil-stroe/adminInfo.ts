@@ -1,5 +1,5 @@
-import { atom } from 'recoil'
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
+import { atom } from 'recoil';
 
 // todo  Recoil atom 的引入以及使用方法
 // import { useRecoilValue } from 'recoil'
@@ -13,5 +13,4 @@ export const adminInfo = atom({
         { id: nanoid(), name: '超级管理员' },
         { id: nanoid(), name: '普通管理员' },
     ],
-})
-// 
+});

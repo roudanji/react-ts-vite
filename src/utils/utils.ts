@@ -3,7 +3,7 @@
  * 组件库 ( select ) 下拉组件可搜索 
  */
 export const filterOption = (input: string, option?: { label: string; value: string | number }) =>
-    (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+    (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
 
 
 /**
@@ -11,15 +11,15 @@ export const filterOption = (input: string, option?: { label: string; value: str
 * @param { inputString : 字符串   } 
 */
 export const shuffleString = (inputString: string) => {
-    const array = inputString.split('')
+    const array = inputString.split('');
     // 使用 Fisher-Yates 算法进行随机排序
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]]
+        [array[i], array[j]] = [array[j], array[i]];
     }
-    const shuffledString = array.join('')
-    return shuffledString
-}
+    const shuffledString = array.join('');
+    return shuffledString;
+};
 
 
 /**
@@ -27,5 +27,5 @@ export const shuffleString = (inputString: string) => {
  * @param { Array<string | number> } 
  */
 export const uniqueArray = (arr: Array<string | number>) => {
-    return Array.from(new Set(arr))
-}
+    return Array.from(new Set(arr));
+};

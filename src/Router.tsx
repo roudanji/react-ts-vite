@@ -4,11 +4,11 @@ import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 
-const NotFound = () => {
-    return <div>404</div>;
-};
+// const NotFound = () => {
+//     return <div>404</div>;
+// };
 
-import Cccccc from '@/pages/test1';
+import Login from '@/pages/login/index';
 
 // 懒加载路由公用方法
 const lazyRouter = (routerComponent: React.ReactElement) => {
@@ -19,34 +19,32 @@ const lazyRouter = (routerComponent: React.ReactElement) => {
     );
 };
 
-const Lazy2 = () => {
-    return (
-        <Routes>
-            <Route
-                path="*"
-                element={lazyRouter(<div>xx</div>)}
-            />
-            <Route
-                path="/sub1"
-                element={lazyRouter(<div>Lazy2 Sub1</div>)}
-            />
-            <Route
-                path="/sub2"
-                element={lazyRouter(<div>Lazy2 Sub2</div>)}
-            />
-        </Routes>
-    );
-};
+// const Lazy2 = () => {
+//     return (
+//         <Routes>
+//             <Route
+//                 path="*"
+//                 element={lazyRouter(<div>xx</div>)}
+//             />
+//             <Route
+//                 path="/sub1"
+//                 element={lazyRouter(<div>Lazy2 Sub1</div>)}
+//             />
+//             <Route
+//                 path="/sub2"
+//                 element={lazyRouter(<div>Lazy2 Sub2</div>)}
+//             />
+//         </Routes>
+//     );
+// };
 
 const Router = () => {
     return (
         <Routes>
-            <Route
-                path="/"
-                element={<Cccccc />}
-            />
+            <Route path="/" element={lazyRouter(<Login />)}/>
+            <Route path="/login" element={lazyRouter(<Login />)}/>
 
-            <Route
+            {/* <Route
                 path="/lazy2/*"
                 element={<Lazy2 />}
             />
@@ -54,7 +52,7 @@ const Router = () => {
             <Route
                 path="*"
                 element={lazyRouter(<NotFound />)}
-            />
+            /> */}
         </Routes>
     );
 };

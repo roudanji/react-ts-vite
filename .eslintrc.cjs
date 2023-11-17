@@ -32,10 +32,10 @@ module.exports = {
     // "error"可以替换成2，代表打开规则，直接报错
     
     'no-var': 2, // 不能使用var声明变量
-    'no-extra-semi': 2, // 禁止多余的冒号
-    semi: 2,
-    'semi-style': ['error', 'last'],
-    '@typescript-eslint/no-extra-semi': 2,
+    // 'no-extra-semi': 2, // 禁止多余的冒号
+    // semi: 2,
+    // 'semi-style': ['error', 'last'],
+    // '@typescript-eslint/no-extra-semi': 2,
     // '@typescript-eslint/indent': ['error', 2], // 缩进 2
     quotes: ['error', 'single'], // 字符串使用单双引号,double,single
     'no-dupe-keys': 2, // 在创建对象字面量时不允许键重复 {a:1,a:1}
