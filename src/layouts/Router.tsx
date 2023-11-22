@@ -1,13 +1,10 @@
-// Router.tsx
 import { Skeleton } from "antd";
 import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
-// const NotFound = () => {
-//     return <div>404</div>;
-// };
-
+import Home from "@/pages/home/index";
 import Login from "@/pages/login/index";
+console.log("路由被加载");
 
 // 懒加载路由公用方法
 const lazyRouter = (routerComponent: React.ReactElement) => {
@@ -44,11 +41,12 @@ const lazyRouter = (routerComponent: React.ReactElement) => {
 //     );
 // };
 
-const Router = () => {
+const RouterData = () => {
   return (
     <Routes>
       <Route path="/" element={lazyRouter(<Login />)} />
       <Route path="/login" element={lazyRouter(<Login />)} />
+      <Route path="/home" element={lazyRouter(<Home />)} />
 
       {/* <Route
                 path="/lazy2/*"
@@ -63,4 +61,4 @@ const Router = () => {
   );
 };
 
-export default Router;
+export default RouterData;

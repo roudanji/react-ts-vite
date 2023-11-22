@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-undefined */
 import { notification } from "antd";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
