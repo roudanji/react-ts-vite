@@ -41,7 +41,7 @@ export default () => {
       label: "editor",
       children: [
         {
-          key: "editor",
+          key: "editor-editor",
           label: "编辑器",
         },
       ],

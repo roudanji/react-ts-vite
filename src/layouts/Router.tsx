@@ -49,7 +49,7 @@ const RouterData = () => {
       <Route path="/home" element={lazyRouter(<Home />)} />
 
       {/* 编辑器 */}
-      <Route path="/editor" element={lazyRouter(<Editor />)} />
+      <Route path="/editor-editor" element={lazyRouter(<Editor />)} />
 
       {/* <Route
                 path="/lazy2/*"
