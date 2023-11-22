@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 
 import Home from "@/pages/home/index";
 import Login from "@/pages/login/index";
-console.log("路由被加载");
 
 // 懒加载路由公用方法
 const lazyRouter = (routerComponent: React.ReactElement) => {

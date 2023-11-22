@@ -1,76 +1,94 @@
 import funnyImg from "@/assets/funny.gif";
 import RouterData from "@/layouts/Router";
 import {
+  EditOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
   UserOutlined,
-  VideoCameraOutlined,
 } from "@ant-design/icons";
+import type { MenuProps } from "antd";
 import { Button, Layout, Menu, theme } from "antd";
 import { useState } from "react";
-import "./menu.less";
-
+import { useNavigate } from "react-router-dom";
+import "./MenuComponent.less";
 const { Header, Sider, Content } = Layout;
 
+console.log("此处菜单被渲染");
+
 export default () => {
-  const [collapsed, setCollapsed] = useState(true);
+  // 控制左侧菜单是否要默认收缩 / 展开
+  const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const pushRouter = useNavigate();
 
-  return (
+  const getMenuKey: MenuProps["onClick"] = (e) => {
+    // console.log("click ", e);
+    pushRouter(e.key);
+  };
+
+  const menuItems = [
+    {
+      key: "home",
+      icon: <UserOutlined />,
+      label: "首页",
+    },
+    {
+      key: "editor",
+      icon: <EditOutlined />,
+      label: "editor",
+      children: [
+        {
+          key: "test",
+          label: "test",
+        },
+      ],
+    },
+  ];
+
+  // 判断是否在登录页
+  const isLoginPage = location.pathname === "/login";
+
+  return !isLoginPage ? (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="demo-logo-vertical" />
-
-        {/* LOGO box */}
         <div className="logo_box">
-          <img src={funnyImg} alt="" />
+          <img src={funnyImg} alt="滑小稽" />
         </div>
         <Menu
+          onClick={getMenuKey}
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={[]}
-          items={[
-            {
-              key: "1",
-              icon: <UserOutlined />,
-              label: "nav 1",
-            },
-            {
-              key: "2",
-              icon: <VideoCameraOutlined />,
-              label: "nav 2",
-            },
-            {
-              key: "3",
-              icon: <UploadOutlined />,
-              label: "nav 3",
-            },
-          ]}
+          defaultSelectedKeys={["home"]}
+          items={menuItems}
         />
       </Sider>
       <Layout>
         <Header style={{ padding: 0, background: colorBgContainer }}>
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-            }}
-          />
+          <div className="header_box">
+            <div>
+              {/* 控制左侧菜单是否收缩按钮 */}
+              <Button
+                type="text"
+                icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                onClick={() => setCollapsed(!collapsed)}
+                style={{
+                  fontSize: "16px",
+                  width: 64,
+                  height: 64,
+                }}
+              />
+            </div>
+            <div>头像显示部分</div>
+          </div>
         </Header>
         <Content
           style={{
-            margin: "24px 10px",
+            margin: "24px 5px",
             padding: 24,
             minHeight: 360,
-            // height: "100vh",
-            // overflow: "hidden", // 添加此行
             background: colorBgContainer,
           }}
         >
@@ -78,5 +96,7 @@ export default () => {
         </Content>
       </Layout>
     </Layout>
+  ) : (
+    <RouterData />
   );
 };
