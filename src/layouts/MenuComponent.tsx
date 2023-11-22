@@ -10,13 +10,12 @@ import {
 import type { MenuProps } from "antd";
 import { Button, Layout, Menu, theme } from "antd";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./MenuComponent.less";
 const { Header, Sider, Content } = Layout;
 
-console.log("此处菜单被渲染");
-
 export default () => {
+  const location = useLocation();
   // 控制左侧菜单是否要默认收缩 / 展开
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -28,6 +27,7 @@ export default () => {
     // console.log("click ", e);
     pushRouter(e.key);
   };
+  console.log(location);
 
   const menuItems = [
     {
@@ -51,6 +51,17 @@ export default () => {
   // 判断是否在登录页
   const isLoginPage = location.pathname === "/login";
 
+  // 获取当前路由的一级路径，用于设置 defaultSelectedKeys 和 defaultOpenKeys
+  const currentPath = location.pathname.split("/")[1];
+
+  const defaultOpenKeys = menuItems
+    .filter(
+      (item) =>
+        item.children &&
+        item.children.some((child) => child.key === currentPath),
+    )
+    .map((item) => item.key);
+
   return !isLoginPage ? (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -62,7 +73,8 @@ export default () => {
           onClick={getMenuKey}
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["home"]}
+          defaultSelectedKeys={[currentPath]}
+          defaultOpenKeys={defaultOpenKeys}
           items={menuItems}
         />
       </Sider>
@@ -88,7 +100,7 @@ export default () => {
         <Content
           style={{
             margin: "24px 5px",
-            padding: 24,
+            padding: 10,
             minHeight: 360,
             background: colorBgContainer,
           }}

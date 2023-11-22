@@ -1,5 +1,6 @@
 import CustomEditor from "@/components/editor/editorComponent";
 import { useState } from "react";
+import "./editUtils.less";
 
 export default () => {
   const [editorHtml, setEditorHtml] = useState("");
@@ -10,11 +11,18 @@ export default () => {
   };
 
   return (
-    <div>
-      <CustomEditor onHtmlChange={getHtmlDomData} value="" />
+    <div className="edit_Utils_box">
+      <h1>编辑器:</h1>
+      <div className="edit">
+        <CustomEditor onHtmlChange={getHtmlDomData} value="" />
+      </div>
 
-      {/* dangerouslySetInnerHTML 可自动读取 html 做显示 */}
-      <div dangerouslySetInnerHTML={{ __html: editorHtml }} />
+      <div className="show_html_box">
+        <div className="left">
+          <div dangerouslySetInnerHTML={{ __html: editorHtml }} />
+        </div>
+        <div className="right">{editorHtml}</div>
+      </div>
     </div>
   );
 };
