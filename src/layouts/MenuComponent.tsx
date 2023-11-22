@@ -1,5 +1,6 @@
 import funnyImg from "@/assets/funny.gif";
 import RouterData from "@/layouts/Router";
+import LoginComponent from "@/pages/login/index";
 import {
   EditOutlined,
   MenuFoldOutlined,
@@ -40,8 +41,8 @@ export default () => {
       label: "editor",
       children: [
         {
-          key: "test",
-          label: "test",
+          key: "editor",
+          label: "编辑器",
         },
       ],
     },
@@ -97,6 +98,6 @@ export default () => {
       </Layout>
     </Layout>
   ) : (
-    <RouterData />
+    <LoginComponent />
   );
 };

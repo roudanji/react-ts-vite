@@ -7,15 +7,18 @@ import { loginFormType } from "../type/hooksType";
 import { LoginContextConfig, loginConfigType } from "../type/type";
 
 export default (): LoginContextConfig => {
-  const [loginForm] = useForm();
   const routerPush = useNavigate();
+
+  // 登录 Form 实例
+  const [loginForm] = useForm();
 
   // 登录表单校验通过
   const loginOnFinish = async (values: loginFormType) => {
     const res = await axios.post("/login", values);
     if (isInterfaceSuccess(res.data.code)) {
-      showMessage("success", `${res.data.message} - ${res.data.token}`, 3);
-      localStorage.setItem("token", res.data.token);
+      const { token } = res.data;
+      showMessage("success", `${res.data.message} - ${token}`, 3);
+      localStorage.setItem("token", token);
       routerPush("/home");
     } else {
       showMessage("error", res.data.message, 3);

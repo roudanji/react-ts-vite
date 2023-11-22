@@ -2,6 +2,7 @@ import { Skeleton } from "antd";
 import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
+import Editor from "@/pages/editUtils/editUtils";
 import Home from "@/pages/home/index";
 import Login from "@/pages/login/index";
 
@@ -46,6 +47,9 @@ const RouterData = () => {
       <Route path="/" element={lazyRouter(<Login />)} />
       <Route path="/login" element={lazyRouter(<Login />)} />
       <Route path="/home" element={lazyRouter(<Home />)} />
+
+      {/* 编辑器 */}
+      <Route path="/editor" element={lazyRouter(<Editor />)} />
 
       {/* <Route
                 path="/lazy2/*"

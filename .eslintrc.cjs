@@ -39,7 +39,7 @@ module.exports = {
     // 'semi-style': ['error', 'last'],
     // '@typescript-eslint/no-extra-semi': 2,
     // '@typescript-eslint/indent': ['error', 2], // 缩进 2
-    quotes: ["error", "double"], // 字符串使用单双引号,double,single
+    quotes: ["warn", "double"], // 字符串使用单双引号,double,single
     "no-dupe-keys": 2, // 在创建对象字面量时不允许键重复 {a:1,a:1}
     "no-dupe-args": 2, // 函数参数不能重复
     "no-const-assign": 2, // 禁止修改const声明的变量
