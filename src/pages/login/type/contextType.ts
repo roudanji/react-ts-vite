@@ -1,4 +1,2 @@
 // 登录 context 类型
-export type LoginContextConfig = {
-    
-}
+export type LoginContextConfig = {};

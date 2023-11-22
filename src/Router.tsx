@@ -1,22 +1,28 @@
 // Router.tsx
-import { Skeleton } from 'antd';
-import React, { Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
-
+import { Skeleton } from "antd";
+import React, { Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
 
 // const NotFound = () => {
 //     return <div>404</div>;
 // };
 
-import Login from '@/pages/login/index';
+import Login from "@/pages/login/index";
 
 // 懒加载路由公用方法
 const lazyRouter = (routerComponent: React.ReactElement) => {
-    return (
-        <Suspense fallback={<><Skeleton active /><Skeleton active /></>}>
-            {routerComponent}
-        </Suspense>
-    );
+  return (
+    <Suspense
+      fallback={
+        <>
+          <Skeleton active />
+          <Skeleton active />
+        </>
+      }
+    >
+      {routerComponent}
+    </Suspense>
+  );
 };
 
 // const Lazy2 = () => {
@@ -39,12 +45,12 @@ const lazyRouter = (routerComponent: React.ReactElement) => {
 // };
 
 const Router = () => {
-    return (
-        <Routes>
-            <Route path="/" element={lazyRouter(<Login />)}/>
-            <Route path="/login" element={lazyRouter(<Login />)}/>
+  return (
+    <Routes>
+      <Route path="/" element={lazyRouter(<Login />)} />
+      <Route path="/login" element={lazyRouter(<Login />)} />
 
-            {/* <Route
+      {/* <Route
                 path="/lazy2/*"
                 element={<Lazy2 />}
             />
@@ -53,8 +59,8 @@ const Router = () => {
                 path="*"
                 element={lazyRouter(<NotFound />)}
             /> */}
-        </Routes>
-    );
+    </Routes>
+  );
 };
 
 export default Router;

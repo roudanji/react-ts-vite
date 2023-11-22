@@ -1,15 +1,12 @@
-import Mock from 'mockjs'
+import Mock from "mockjs";
 // import { nanoid } from 'nanoid'
 
-const testData = [
-    'xxxx'
-]
+const testData = ["xxxx"];
 
-Mock.mock('/api/testInterface', 'get', {
-    code: 200,
-    testData
-})
-
+Mock.mock("/api/testInterface", "get", {
+  code: 200,
+  testData,
+});
 
 // Mock.mock('/api/variable', 'post', (params: any) => {
 //     const paString = JSON.parse(params.body);
@@ -28,4 +25,3 @@ Mock.mock('/api/testInterface', 'get', {
 //     }
 
 // })
-

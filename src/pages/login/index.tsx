@@ -1,12 +1,12 @@
-import { LoginContext } from './context'
-import store from './hooks/hooks'
-import './index.less'
+import { LoginContext } from "./context";
+import store from "./hooks/hooks";
+import "./index.less";
 
 // 登录组件
-import LoginComponent from './components/loginComponent'
+import LoginComponent from "./components/loginComponent";
 
 export default () => {
-  const storeData = store()
+  const storeData = store();
 
   return (
     <LoginContext.Provider value={storeData}>
@@ -14,5 +14,5 @@ export default () => {
         <LoginComponent />
       </div>
     </LoginContext.Provider>
-  )
-}
+  );
+};
