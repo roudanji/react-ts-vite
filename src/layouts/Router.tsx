@@ -1,10 +1,13 @@
 import { Skeleton } from "antd";
 import React, { Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
-import Editor from "@/pages/editUtils/editUtils";
-import Home from "@/pages/home/index";
+// 登录
 import Login from "@/pages/login/index";
+// 首页
+import Home from "@/pages/home/index";
+// 编辑器
+import Editor from "@/pages/editUtils/editUtils";
 
 // 懒加载路由公用方法
 const lazyRouter = (routerComponent: React.ReactElement) => {
@@ -44,7 +47,7 @@ const lazyRouter = (routerComponent: React.ReactElement) => {
 const RouterData = () => {
   return (
     <Routes>
-      <Route path="/" element={lazyRouter(<Login />)} />
+      <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={lazyRouter(<Login />)} />
       <Route path="/home" element={lazyRouter(<Home />)} />
 
@@ -60,6 +63,8 @@ const RouterData = () => {
                 path="*"
                 element={lazyRouter(<NotFound />)}
             /> */}
+
+      {/* <Route path="*" element={<Navigate to="/login" replace />} /> */}
     </Routes>
   );
 };

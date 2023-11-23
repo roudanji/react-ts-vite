@@ -16,7 +16,7 @@ type MyEditorProps = {
 
 const MyEditor = ({ onHtmlChange, value = "" }: MyEditorProps) => {
   // editor 实例
-  const [editor, setEditor] = useState<IDomEditor | null>(null); // TS 语法
+  const [editor, setEditor] = useState<IDomEditor | null>(null);
 
   // 编辑器内容
   const [html, setHtml] = useState<string>("");

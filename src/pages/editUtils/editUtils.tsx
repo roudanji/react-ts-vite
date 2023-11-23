@@ -12,7 +12,7 @@ export default () => {
 
   return (
     <div className="edit_Utils_box">
-      <h1>编辑器:</h1>
+      <h1>编辑器 (可全屏):</h1>
       <div className="edit">
         <CustomEditor onHtmlChange={getHtmlDomData} value="" />
       </div>

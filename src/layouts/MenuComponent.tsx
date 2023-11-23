@@ -16,18 +16,23 @@ const { Header, Sider, Content } = Layout;
 
 export default () => {
   const location = useLocation();
+
+  const pushRouter = useNavigate();
+
   // 控制左侧菜单是否要默认收缩 / 展开
   const [collapsed, setCollapsed] = useState(false);
+
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const pushRouter = useNavigate();
 
   const getMenuKey: MenuProps["onClick"] = (e) => {
     // console.log("click ", e);
     pushRouter(e.key);
   };
-  console.log(location);
+
+  // 判断是否在登录页
+  const isLoginPage = location.pathname === "/login";
 
   const menuItems = [
     {
@@ -47,9 +52,6 @@ export default () => {
       ],
     },
   ];
-
-  // 判断是否在登录页
-  const isLoginPage = location.pathname === "/login";
 
   // 获取当前路由的一级路径，用于设置 defaultSelectedKeys 和 defaultOpenKeys
   const currentPath = location.pathname.split("/")[1];
