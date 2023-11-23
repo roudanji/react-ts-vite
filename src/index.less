@@ -2,3 +2,171 @@
   padding: 0;
   margin: 0;
 }
+body {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+// form-error 文字
+.ant-form-item-explain-error {
+  font-size: 12px !important;
+}
+
+// logo字体
+.ant-pro-top-nav-header-logo > *:first-child > h1 {
+  font-weight: normal;
+}
+
+// 右上角登录信息左右边距
+.ant-pro-global-header-header-actions-avatar {
+  padding-inline: 0;
+}
+
+// 表头单元格背景色
+.ant-table-thead > tr > th {
+  background: #004831 !important;
+}
+
+// 表头单元格
+.ant-table-wrapper .ant-table-thead > tr > th {
+  font-weight: unset;
+  padding: 3px !important;
+  color: #fff;
+}
+
+// 表头单元格背景色
+.ant-table-wrapper
+  .ant-table.ant-table-bordered
+  > .ant-table-container
+  > .ant-table-header
+  > table
+  > thead
+  > tr
+  > td {
+  background-color: #c5d9f1 !important;
+}
+
+// 表体单元格内边距
+.ant-table-wrapper .ant-table.ant-table-small .ant-table-tbody > tr > td {
+  padding: 1px 3px;
+}
+
+// (table-body cell强设置了padding，导致aria-hidden="true"的行因为内边距而显示)
+tr[aria-hidden="true"] > td {
+  padding: 0 !important;
+}
+
+// 表体hover背景色
+.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td,
+.ant-table-row-hover,
+.ant-table-row-hover > td {
+  background-color: #dfeded !important;
+}
+
+// 表体hover背景色
+.ant-table-fixed .ant-table-row-hover,
+.ant-table-row-hover > td {
+  background-color: #dfeded !important;
+}
+
+.ant-pro-layout .ant-pro-layout-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: transparent;
+  position: relative;
+  padding-block: 0;
+  padding-inline: 0;
+}
+
+// 弹框内容内（上）边距
+.ant-modal-body {
+  padding-top: 10px;
+}
+
+// 确认框按钮外（上）边距
+.ant-modal-confirm .ant-modal-confirm-btns {
+  margin-top: 25px;
+}
+
+// 选中行不设置背景色
+.ant-table-row-selected > td {
+  background-color: #f0faff !important;
+}
+
+// 时间线内（下）边距
+.ant-timeline .ant-timeline-item {
+  padding-bottom: 10px;
+}
+
+// 弹框位置
+.ant-modal {
+  top: 50px !important;
+}
+
+// -----------------共通样式-----------------
+// 一览页面搜索条件区域
+.search-area {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  margin: 6px 0;
+  padding: 5px;
+  background-color: #eee;
+}
+
+// 一览页面按钮操作区域
+.operation-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 24px;
+  font-size: 12px;
+
+  &:nth-child(2) {
+    margin-bottom: 5px;
+    /* 如果有第二个子元素，则设置下边距为 5px */
+  }
+}
+
+// 一览页面底部按钮操作区域
+.foot-area {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.row-bg-green {
+  background-color: #d8e4bc;
+
+  & > .ant-table-cell {
+    background-color: #d8e4bc;
+  }
+}
+
+.row-bg-disabled {
+  background-color: #e1e1e1;
+
+  & > .ant-table-cell {
+    background-color: #e1e1e1;
+  }
+}
+
+.colonFlag::after {
+  content: ":";
+  position: relative;
+  top: -0.5px;
+  margin: 0 4px 0 2px;
+}
+
+// 必选 红色星号
+.mustFlag::before {
+  display: inline-block;
+  margin-inline-end: 4px;
+  color: #ff4d4f;
+  font-size: 14px;
+  font-family: SimSun, sans-serif;
+  line-height: 1;
+  content: "*";
+}
