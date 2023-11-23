@@ -10,7 +10,7 @@ const showMessage = (
 ) => {
   const config = {
     content,
-    duration,
+    duration: duration || 2,
     onClose,
   };
 
@@ -18,3 +18,6 @@ const showMessage = (
 };
 
 export default showMessage;
+
+// import showMessage from "@/components/messageComponent/message";
+// showMessage("error", res.data.message, 3);
