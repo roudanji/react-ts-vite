@@ -101,11 +101,6 @@ export default () => {
     },
   ];
 
-  useEffect(() => {
-    getUserInfo();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   // 获取当前路由的一级路径，用于设置 defaultSelectedKeys 和 defaultOpenKeys
   const currentPath = location.pathname.split("/")[1];
 
@@ -116,6 +111,11 @@ export default () => {
         item.children.some((child) => child.key === currentPath),
     )
     .map((item) => item.key);
+
+  useEffect(() => {
+    getUserInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     !isLoginPage && (
@@ -131,8 +131,8 @@ export default () => {
             mode="inline"
             defaultSelectedKeys={[currentPath]}
             defaultOpenKeys={defaultOpenKeys}
-            items={filterMenuItemsData}
-            // items={menuItems}
+            items={filterMenuItemsData} // 过滤之后的菜单结构
+            // items={menuItems} // 未经过滤的菜单结构
           />
         </Sider>
         <Layout>

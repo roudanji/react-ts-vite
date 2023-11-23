@@ -60,7 +60,7 @@ module.exports = {
     "no-multiple-empty-lines": [1, { max: 2 }], // 空行最多不能超过2行
     "no-native-reassign": 2, // 不能重写native对象
     "no-negated-in-lhs": 2, // in 操作符的左边不能有!
-    "no-nested-ternary": 0, // 禁止使用嵌套的三目运算
+    "no-nested-ternary": 2, // 禁止使用嵌套的三目运算
     "no-new": 1, // 禁止在使用new构造一个实例后不赋值
     "no-new-func": 1, // 禁止使用new Function
     "no-new-object": 2, // 禁止使用new Object()
