@@ -1,6 +1,6 @@
 import Mock from "mockjs";
 
-// 模拟getuserinfo接口
+// 模拟 getuserinfo 接口
 Mock.mock("/getuserinfo", "get", (options) => {
   const token = localStorage.getItem("token");
 
@@ -13,7 +13,7 @@ Mock.mock("/getuserinfo", "get", (options) => {
         role: "超级管理员",
         sex: "男",
         age: 20,
-        jurisdiction: ["editor-editor"],
+        jurisdiction: ["home", "editor-editor"], // 权限数据，根据菜单的 key 属性
       },
     };
   } else {

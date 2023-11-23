@@ -66,10 +66,9 @@ export default () => {
       if (isInterfaceSuccess(res.data.code)) {
         setUser(res.data.data);
 
+        const { jurisdiction } = res.data.data;
         // 读取成功之后 动态生成路由
-        setFilterMenuItemsData(
-          filterMenuItems(menuItems, res.data.data.jurisdiction),
-        );
+        setFilterMenuItemsData(filterMenuItems(menuItems, jurisdiction));
       }
     }
   };
