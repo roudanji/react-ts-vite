@@ -38,6 +38,6 @@ const codeArray: Record<number, boolean> = {
   200: true,
   401: false,
 };
-export const isInterfaceSuccess = (codeString: number) => {
-  return codeArray[codeString] || false;
+export const isInterfaceSuccess = (codeNumber: number) => {
+  return codeArray[codeNumber] || false;
 };
