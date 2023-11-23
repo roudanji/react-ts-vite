@@ -8,7 +8,6 @@ import "./index.less";
 // Mock 模拟
 import "../mock/homeTable.ts";
 import "../mock/login.ts";
-import "../mock/testMock.ts";
 import "../mock/userInfo.ts";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

@@ -1,5 +1,5 @@
 import funnyImg from "@/assets/funny.gif";
-import RouterData from "@/layouts/Router";
+import RouterData from "@/config/Router";
 import LoginComponent from "@/pages/login/index";
 import {
   EditOutlined,

@@ -1,4 +1,5 @@
 import CustomEditor from "@/components/editor/editorComponent";
+import { Input } from "antd";
 import { useState } from "react";
 import "./editUtils.less";
 
@@ -16,7 +17,7 @@ export default () => {
       <div className="edit">
         <CustomEditor onHtmlChange={getHtmlDomData} value="" />
       </div>
-
+      <Input></Input>
       <div className="show_html_box">
         <div className="left">
           <div dangerouslySetInnerHTML={{ __html: editorHtml }} />

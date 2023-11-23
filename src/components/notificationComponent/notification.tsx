@@ -1,6 +1,8 @@
 import { notification } from "antd";
 
-type optionsType = {
+type NotificationType = "success" | "info" | "warning" | "error";
+
+type OptionsType = {
   message: string;
   description: string | Array<string> | any;
   placement?: string;
@@ -8,11 +10,11 @@ type optionsType = {
   style?: Record<any, number | string>;
 };
 
-const ShowNotification = (type: string, options: optionsType) => {
+const ShowNotification = (type: NotificationType, options: OptionsType) => {
   const { placement, message, description, duration, style } = options;
 
   (notification as any)[type]({
-    placement: placement || "bottomLeft",
+    placement: placement || "bottomRight",
     message: <b>{message}</b>,
     description,
     duration: duration || null,
@@ -27,5 +29,4 @@ export default ShowNotification;
 // ShowNotification("success", {
 //   message: stateData.message,
 //   description: stateData.result,
-//   ......
 // });

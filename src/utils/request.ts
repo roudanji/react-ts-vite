@@ -1,4 +1,5 @@
 /* eslint-disable no-undefined */
+import ShowNotification from "@/components/notificationComponent/notification";
 import { notification } from "antd";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
@@ -14,7 +15,7 @@ notification.config({ maxCount: 3 });
 const serverCodeMessage: Record<number, string> = {
   200: "服务器成功返回请求的数据",
   400: "Bad Request",
-  401: "Unauthorized",
+  401: "当前用户登入信息已失效，请重新登入再操作",
   403: "Forbidden",
   404: "Not Found",
   500: "服务器发生错误，请检查服务器(Internal Server Error)",
@@ -27,10 +28,10 @@ const whiteList = [""];
 
 // 动态提示接口错误
 const showErrorNotification = (
-  code: number | string | undefined,
+  code: number | undefined,
   messageError: string | undefined,
 ) => {
-  notification.info({
+  ShowNotification("error", {
     duration: 3.5,
     message: "Request Error",
     description: code !== void 0 ? serverCodeMessage[+code] : messageError,
@@ -45,12 +46,13 @@ const service = axios.create({
 
 // 请求拦截器
 service.interceptors.request.use(
-  (config) => {
+  (config: AxiosRequestConfig): any => {
+    // todo: implement
     const TOKEN = "token";
     const { headers, url } = config;
 
     if (TOKEN && headers && !whiteList.includes(url!.split("?")[0])) {
-      // headers[settings.ajaxHeadersTokenKey] = TOKEN
+      headers["Authorization"] = TOKEN;
     }
     return config;
   },
@@ -119,3 +121,13 @@ const request: HttpRequest = {
 };
 
 export default request;
+
+// 调用示例
+
+// import { request } from "@/utils/request";
+
+// export const testGet = (): Promise<any> => request.get("/get/interface");
+
+// export const testPost = (data:any): Promise<any> => request.post("/post/interface",data)
+
+// export const testDelete = (id:number): Promise<any> => request.delete(`/delete/interface/${id}`);
