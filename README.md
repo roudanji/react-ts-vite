@@ -26,6 +26,8 @@ If you are developing a production application, we recommend updating the config
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
 
+动态路由已设置，在 MenuComponent.tsx 组件中根据用户信息的 jurisdiction 字段数组中的元素 "key" 去生成对应用户的菜单。
+
 ![image](https://github.com/roudanji/react-ts-vite/assets/136449369/e6bae264-bbee-4419-abd9-947281d5d83d)
 内置富文本编辑器可通过回调函数和默认赋值来取值回显（编辑器可全屏）。
 
