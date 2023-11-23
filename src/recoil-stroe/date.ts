@@ -1,9 +1,6 @@
 import { nanoid } from "nanoid";
 import { atom } from "recoil";
 
-// import { date } from "@/store/date";
-// import { useRecoilValue } from "recoil";
-
 export const date = atom({
   key: "date",
   default: [
@@ -21,3 +18,8 @@ export const date = atom({
     { id: nanoid(), label: "12月", value: 12 },
   ],
 });
+
+// import { date } from "@/recoil-stroe/date";
+// import { useRecoilValue } from "recoil";
+// const currentDate = useRecoilValue(date);
+// console.log("currentDate", currentDate);

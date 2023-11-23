@@ -92,7 +92,7 @@ module.exports = {
     "import/no-unresolved": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "eslintreact-hooks/exhaustive-deps":"off",
+    "eslintreact-hooks/exhaustive-deps": "off",
     "import/no-extraneous-dependencies": ["error", { devDependencies: true }], // 检测项目中导入的外部模块是否被正确地列为项目的依赖项
     // 关闭variable必须全部大写规则
     "@typescript-eslint/naming-convention": [
