@@ -1,16 +1,25 @@
-import { isInterfaceSuccess } from "@/utils/utils";
-import axios from "axios";
-import { selector } from "recoil";
+import { atom } from "recoil";
 
-export const userInfo = selector({
+type UserInfo = {
+  username: string;
+  role: string;
+  sex: string;
+  age: number;
+  jurisdiction: Array<string>;
+};
+
+const userInfoObj = {
+  username: "",
+  role: "",
+  sex: "",
+  age: "",
+  jurisdiction: [""],
+};
+
+// 当前用户信息
+export const userInfo = atom({
   key: "userInfo",
-  get: async ({ get }) => {
-    const token = localStorage.getItem("token");
-    if (token !== null) {
-      const res = await axios.get("/getuserinfo");
-      if (isInterfaceSuccess(res.data.code)) return res.data;
-    }
-  },
+  default: userInfoObj || ({} as UserInfo),
 });
 
 // import { userInfo } from "@/recoil-stroe/userInfo";

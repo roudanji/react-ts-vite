@@ -31,9 +31,7 @@ export default () => {
       width: 130,
       fixed: "left",
       align: "center",
-      render: (record: any) => {
-        return <span className="title_style">{record}</span>;
-      },
+      render: (record: any) => <span className="title_style">{record}</span>,
     },
     {
       title: "項目",
@@ -235,7 +233,7 @@ export default () => {
   return (
     <div className="table_border_display" style={{ width: "100vm" }}>
       <Table
-        rowKey={"key"}
+        rowKey={"id"}
         columns={columns}
         dataSource={bottomTableConfig.bottomTableData}
         bordered

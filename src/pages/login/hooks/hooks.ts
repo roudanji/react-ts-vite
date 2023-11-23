@@ -2,6 +2,7 @@ import showMessage from "@/components/messageComponent/message";
 import { isInterfaceSuccess } from "@/utils/utils";
 import { useForm } from "antd/es/form/Form";
 import axios from "axios";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginFormType } from "../type/hooksType";
 import { LoginContextConfig, loginConfigType } from "../type/type";
@@ -25,6 +26,9 @@ export default (): LoginContextConfig => {
     }
   };
 
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
   // 登录配置对象
   const loginConfig: loginConfigType = {
     loginForm,

@@ -1,6 +1,12 @@
 import { nanoid } from "nanoid";
 import { atom } from "recoil";
 
+type DateType = {
+  id: string;
+  label: string;
+  value: number;
+};
+
 export const date = atom({
   key: "date",
   default: [
@@ -16,7 +22,7 @@ export const date = atom({
     { id: nanoid(), label: "10月", value: 10 },
     { id: nanoid(), label: "11月", value: 11 },
     { id: nanoid(), label: "12月", value: 12 },
-  ],
+  ] as DateType[],
 });
 
 // import { date } from "@/recoil-stroe/date";
