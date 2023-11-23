@@ -36,11 +36,12 @@ If you are developing a production application, we recommend updating the config
 
 
 
-![image](https://github.com/roudanji/react-ts-vite/assets/136449369/eb1d6344-3df0-4b64-8778-ac7e5ec9ca16)![image](https://github.com/roudanji/react-ts-vite/assets/136449369/a67f5a2a-0b5c-4adf-b17b-3860c57415cb)
-
 内置 Face Book 最新的 Recoil 状态管理工具，可以更好的进行全局数据共享，操作简单实用。
 
 
 
 ![image](https://github.com/roudanji/react-ts-vite/assets/136449369/41f80737-b367-4631-a113-1b06970a0643)
 内置了 Eslint + Prettier 代码全局规范（可以让你的研发团队保持统一的代码格式）。
+
+![image](https://github.com/roudanji/react-ts-vite/assets/136449369/1c428a95-5807-424b-bc9a-8ff83a96365b)
+已经对 antd design 5 组件库常用组件样式进行了封装，可以直接通过 @import uri('xx') 引入使用，也可对样式进行自定义的更改
