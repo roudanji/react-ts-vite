@@ -233,7 +233,7 @@ export default () => {
   return (
     <div className="table_border_display" style={{ width: "100vm" }}>
       <Table
-        rowKey={"id"}
+        rowKey="id"
         columns={columns}
         dataSource={bottomTableConfig.bottomTableData}
         bordered

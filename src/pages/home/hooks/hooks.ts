@@ -60,15 +60,17 @@ export default (): shopSimplePLContextType => {
 
   useEffect(() => {
     test();
+    setTopSearchYear(dayjs().format("YYYY/MM/DD"));
+    setTopMounth(dayjs().format("MM"));
   }, []);
 
   // 顶部配置
   const topConfig: topConfigType = {
-    topSearchYear,
     topMounth,
-    clickStoteGetValue,
-    searchButton,
     tableLoading,
+    topSearchYear,
+    searchButton,
+    clickStoteGetValue,
   };
 
   // 底部表格配置
