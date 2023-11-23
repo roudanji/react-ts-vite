@@ -1,7 +1,7 @@
 import { Table } from "antd";
 import { useContext } from "react";
 import { shopSimplePLContext } from "../../context";
-import "./index.less";
+import "./bottomTableComponent.less";
 
 export default () => {
   const { bottomTableConfig } = useContext(shopSimplePLContext);
@@ -235,7 +235,7 @@ export default () => {
   return (
     <div className="table_border_display" style={{ width: "100vm" }}>
       <Table
-        rowKey={"id"}
+        rowKey={"key"}
         columns={columns}
         dataSource={bottomTableConfig.bottomTableData}
         bordered

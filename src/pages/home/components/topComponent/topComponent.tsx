@@ -6,7 +6,7 @@ import { nanoid } from "nanoid";
 import { useContext } from "react";
 import { useRecoilValue } from "recoil";
 import { shopSimplePLContext } from "../../context";
-import "./index.less";
+import "./topComponent.less";
 
 export default () => {
   const { topConfig } = useContext(shopSimplePLContext);

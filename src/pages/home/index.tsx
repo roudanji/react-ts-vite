@@ -3,9 +3,9 @@ import store from "./hooks/hooks";
 import "./index.less";
 
 // 顶部搜索组件 导出组件
-import TopSearchComponent from "./components/topComponent/index";
+import TopSearchComponent from "./components/topComponent/topComponent";
 // 底部表格组件
-import BottomTableComponent from "./components/bottomTableComponent/index";
+import BottomTableComponent from "./components/bottomTableComponent/bottomTableComponent";
 
 export default () => {
   const storeData = store();
