@@ -8,6 +8,8 @@ import Login from "@/pages/login/index";
 import Home from "@/pages/home/index";
 // 编辑器
 import Editor from "@/pages/editUtils/editUtils";
+// 测试页面
+import Test from "@/pages/test/index";
 
 // 懒加载路由公用方法
 const lazyRouter = (routerComponent: React.ReactElement) => {
@@ -50,6 +52,7 @@ const RouterData = () => {
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={lazyRouter(<Login />)} />
       <Route path="/home" element={lazyRouter(<Home />)} />
+      <Route path="/test" element={lazyRouter(<Test />)} />
 
       {/* 编辑器 */}
       <Route path="/editor-editor" element={lazyRouter(<Editor />)} />

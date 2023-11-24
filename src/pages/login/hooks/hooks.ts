@@ -18,17 +18,19 @@ export default (): LoginContextConfig => {
     const res = await axios.post("/login", values);
     if (isInterfaceSuccess(res.data.code)) {
       const { token } = res.data;
-      showMessage("success", `${res.data.message} - ${token}`, 3);
+      showMessage("success", `${res.data.message}`);
       localStorage.setItem("token", token);
+      // const expirationTime = new Date().getTime() + 4 * 60 * 60 * 1000; // 四个小时的毫秒数
       routerPush("/home");
     } else {
-      showMessage("error", res.data.message, 3);
+      showMessage("error", res.data.message);
     }
   };
 
   useEffect(() => {
-    localStorage.clear();
+    localStorage.removeItem("token");
   }, []);
+
   // 登录配置对象
   const loginConfig: loginConfigType = {
     loginForm,

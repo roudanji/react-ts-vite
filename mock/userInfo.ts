@@ -13,7 +13,7 @@ Mock.mock("/getuserinfo", "get", (options) => {
         role: "超级管理员",
         sex: "男",
         age: 20,
-        jurisdiction: ["home", "editor-editor"], // 权限数据，根据菜单的 key 属性
+        jurisdiction: ["home", "editor-editor", "test"], // 权限数据，根据菜单的 key 属性
       },
     };
   } else {

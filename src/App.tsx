@@ -1,4 +1,4 @@
-import MenuComponent from "@/layouts/MenuComponent";
+import MenuComponent from "@/layouts/meunComponent/index";
 import { memo } from "react";
 
 export default memo(() => {

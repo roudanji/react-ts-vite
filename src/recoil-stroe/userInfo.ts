@@ -16,7 +16,7 @@ const userInfoObj = {
   jurisdiction: [""],
 };
 
-// 当前用户信息
+// 当前用户信息 (  layouts => MenuComponent.tsx 67行存储 )
 export const userInfo = atom({
   key: "userInfo",
   default: userInfoObj || ({} as UserInfo),
