@@ -177,19 +177,19 @@ export default (): MenuComponentContextConfig => {
 
   // 点击关闭 tabs 按钮
   const TabsEdit = (key: string) => {
-    const copyMianbao: any = [...breadCrumbs];
-    const findKeyItem = copyMianbao.findIndex(
+    const copyBreadCrumbs: any = [...breadCrumbs];
+    const findKeyItem = copyBreadCrumbs.findIndex(
       (item: MenuItemType) => item.key === key,
     );
     if (findKeyItem !== -1) {
-      copyMianbao.splice(findKeyItem, 1);
+      copyBreadCrumbs.splice(findKeyItem, 1);
     }
     setBreadCrumbs((currentValue) => {
-      setBreadCrumbsActiveKey(copyMianbao.at(-1).key);
-      setCurrentPath(copyMianbao.at(-1).key);
-      setCurrentDefaultOpenKeys([copyMianbao.at(-1).key]);
-      pushRouter(`/${copyMianbao.at(-1).key}`);
-      return copyMianbao;
+      setBreadCrumbsActiveKey(copyBreadCrumbs.at(-1).key);
+      setCurrentPath(copyBreadCrumbs.at(-1).key);
+      setCurrentDefaultOpenKeys([copyBreadCrumbs.at(-1).key]);
+      pushRouter(`/${copyBreadCrumbs.at(-1).key}`);
+      return copyBreadCrumbs;
     });
   };
 
