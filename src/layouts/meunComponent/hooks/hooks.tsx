@@ -177,7 +177,13 @@ export default (): MenuComponentContextConfig => {
 
   // 点击关闭 tabs 按钮
   const TabsEdit = (key: string) => {
-    const copyBreadCrumbs: any = [...breadCrumbs];
+    const copyBreadCrumbs:
+      | Array<{
+          label: string;
+          key: string;
+          icon?: ReactNode;
+        }>
+      | any = [...breadCrumbs];
     const findKeyItem = copyBreadCrumbs.findIndex(
       (item: MenuItemType) => item.key === key,
     );
