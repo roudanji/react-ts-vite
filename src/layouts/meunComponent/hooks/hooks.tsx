@@ -14,7 +14,7 @@ import {
 } from "../type/type";
 
 export default (): MenuComponentContextConfig => {
-  const menuItems = [
+  const menuItems: MenuItemType[] = [
     {
       key: "home",
       icon: <UserOutlined />,
