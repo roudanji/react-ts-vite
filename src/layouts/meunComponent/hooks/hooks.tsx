@@ -187,7 +187,7 @@ export default (): MenuComponentContextConfig => {
     setBreadCrumbs((currentValue) => {
       setBreadCrumbsActiveKey(copyMianbao.at(-1).key);
       setCurrentPath(copyMianbao.at(-1).key);
-      setCurrentDefaultOpenKeys(copyMianbao.at(-1).key);
+      setCurrentDefaultOpenKeys([copyMianbao.at(-1).key]);
       pushRouter(`/${copyMianbao.at(-1).key}`);
       return copyMianbao;
     });
