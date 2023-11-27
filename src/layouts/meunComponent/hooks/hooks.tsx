@@ -77,7 +77,7 @@ export default (): MenuComponentContextConfig => {
       const res = await axios.get("/getuserinfo");
       if (isInterfaceSuccess(res.data.code)) {
         setUser(res.data.data);
-
+        console.log("res.data.data", res.data.data);
         const { jurisdiction } = res.data.data;
         // 读取成功之后 动态生成路由
         setFilterMenuItemsData(filterMenuItems(menuItems, jurisdiction));
@@ -224,7 +224,7 @@ export default (): MenuComponentContextConfig => {
   useEffect(() => {
     initialGet();
     findMenuItemByKey(menuItems);
-  }, []);
+  }, [location]);
 
   // menu 菜单以及面包屑所需配置
   const menuConfig: menuConfigType = {

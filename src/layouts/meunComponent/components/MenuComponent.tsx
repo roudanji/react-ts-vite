@@ -12,94 +12,95 @@ const { Header, Sider, Content } = Layout;
 
 export default () => {
   const location = useLocation();
-
-  const { menuConfig } = useContext(MenuComponentContext);
-
   // 判断是否在登录页
   const isLoginPage = location.pathname === "/login";
   if (isLoginPage) {
     return <LoginComponent />;
   }
 
+  const { menuConfig } = useContext(MenuComponentContext);
+
+  const {
+    collapsed,
+    currentPath,
+    breadCrumbs,
+    colorBgContainer,
+    filterMenuItemsData,
+    breadCrumbsActiveKey,
+    currentDefaultOpenKeys,
+    TabsEdit,
+    getMenuKey,
+    TabsChange,
+    setCollapsed,
+    menuOnOpenChange,
+  } = menuConfig;
+
   return (
-    !isLoginPage && (
+    <Layout>
+      <Sider trigger={null} collapsible collapsed={collapsed}>
+        <div className="demo-logo-vertical" />
+        <div className="logo_box">
+          <img src={funnyImg} alt="滑小稽" />
+        </div>
+        <Menu
+          onClick={getMenuKey}
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={[currentPath]} // 初始化选中高亮
+          selectedKeys={[currentPath]} // 动态更新菜单高亮
+          openKeys={currentDefaultOpenKeys} // 动态初始话选中展开
+          onOpenChange={menuOnOpenChange} // 点击二级嵌套路由的回调事件
+          items={filterMenuItemsData} // 过滤之后的菜单结构
+        />
+      </Sider>
       <Layout>
-        <Sider trigger={null} collapsible collapsed={menuConfig.collapsed}>
-          <div className="demo-logo-vertical" />
-          <div className="logo_box">
-            <img src={funnyImg} alt="滑小稽" />
-          </div>
-          <Menu
-            onClick={menuConfig.getMenuKey}
-            theme="dark"
-            mode="inline"
-            defaultSelectedKeys={[menuConfig.currentPath]} // 初始化选中高亮
-            selectedKeys={[menuConfig.currentPath]} // 动态更新菜单高亮
-            openKeys={menuConfig.currentDefaultOpenKeys} // 动态初始话选中展开
-            onOpenChange={menuConfig.menuOnOpenChange} // 点击二级嵌套路由的回调事件
-            items={menuConfig.filterMenuItemsData} // 过滤之后的菜单结构
-          />
-        </Sider>
-        <Layout>
-          <Header
-            style={{
-              padding: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              height: "40px",
-              backgroundColor: "#001529",
-            }}
-          >
-            <div>
-              {/* 控制左侧菜单是否收缩按钮 */}
-              <Button
-                type="text"
-                icon={
-                  menuConfig.collapsed ? (
-                    <MenuUnfoldOutlined />
-                  ) : (
-                    <MenuFoldOutlined />
-                  )
-                }
-                onClick={() => menuConfig.setCollapsed(!menuConfig.collapsed)}
-                style={{
-                  fontSize: "16px",
-                  width: 64,
-                  height: 64,
-                  color: "#fff",
-                }}
-              />
-            </div>
-            <div style={{ color: "#fff" }}>头像显示部分</div>
-          </Header>
-          <div className="bread_box">
-            <Tabs
-              type={
-                menuConfig.breadCrumbs.length === 1 ? "card" : "editable-card"
-              } // 是否显示关闭按钮
-              onChange={menuConfig.TabsChange}
-              activeKey={
-                menuConfig.breadCrumbsActiveKey ||
-                menuConfig.breadCrumbs[0]?.key
-              }
-              onEdit={menuConfig.TabsEdit}
-              items={menuConfig.breadCrumbs}
-              hideAdd
+        <Header
+          style={{
+            padding: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: "40px",
+            backgroundColor: "#001529",
+          }}
+        >
+          <div>
+            {/* 控制左侧菜单是否收缩按钮 */}
+            <Button
+              type="text"
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setCollapsed(!collapsed)}
+              style={{
+                fontSize: "16px",
+                width: 64,
+                height: 64,
+                color: "#fff",
+              }}
             />
           </div>
-          <Content
-            style={{
-              margin: "0 5px",
-              padding: 10,
-              minHeight: 360,
-              background: menuConfig.colorBgContainer,
-            }}
-          >
-            <RouterData />
-          </Content>
-        </Layout>
+          <div style={{ color: "#fff" }}>头像显示部分</div>
+        </Header>
+        <div className="bread_box">
+          <Tabs
+            type={breadCrumbs.length === 1 ? "card" : "editable-card"} // 是否显示关闭按钮
+            onChange={TabsChange}
+            activeKey={breadCrumbsActiveKey || breadCrumbs[0]?.key}
+            onEdit={TabsEdit}
+            items={breadCrumbs}
+            hideAdd
+          />
+        </div>
+        <Content
+          style={{
+            margin: "0 5px",
+            padding: 10,
+            minHeight: 360,
+            background: colorBgContainer,
+          }}
+        >
+          <RouterData />
+        </Content>
       </Layout>
-    )
+    </Layout>
   );
 };

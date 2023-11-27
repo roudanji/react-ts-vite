@@ -20,7 +20,6 @@ export default (): LoginContextConfig => {
       const { token } = res.data;
       showMessage("success", `${res.data.message}`);
       localStorage.setItem("token", token);
-      // const expirationTime = new Date().getTime() + 4 * 60 * 60 * 1000; // 四个小时的毫秒数
       routerPush("/home");
     } else {
       showMessage("error", res.data.message);

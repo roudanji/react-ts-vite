@@ -27,25 +27,6 @@ const lazyRouter = (routerComponent: React.ReactElement) => {
   );
 };
 
-// const Lazy2 = () => {
-//     return (
-//         <Routes>
-//             <Route
-//                 path="*"
-//                 element={lazyRouter(<div>xx</div>)}
-//             />
-//             <Route
-//                 path="/sub1"
-//                 element={lazyRouter(<div>Lazy2 Sub1</div>)}
-//             />
-//             <Route
-//                 path="/sub2"
-//                 element={lazyRouter(<div>Lazy2 Sub2</div>)}
-//             />
-//         </Routes>
-//     );
-// };
-
 const RouterData = () => {
   return (
     <Routes>
@@ -66,8 +47,6 @@ const RouterData = () => {
                 path="*"
                 element={lazyRouter(<NotFound />)}
             /> */}
-
-      {/* <Route path="*" element={<Navigate to="/login" replace />} /> */}
     </Routes>
   );
 };
