@@ -17,23 +17,23 @@ import {
 export default (): MenuComponentContextConfig => {
   const menuState = useRecoilValue(menuUseeffect);
 
-  // 获取当前路由的一级路径，用于设置 defaultSelectedKeys
+  // 跳转路由
+  const pushRouter = useNavigate();
+
+  // 获取当前路由的一级路径，用于设置 defaultSelectedKeys 初始化选中高亮
   const [currentPath, setCurrentPath] = useState(
     location.pathname.split("/")[1],
   );
 
-  // 跳转路由
-  const pushRouter = useNavigate();
-
   // 修改 Recoil 用户信息数据
   const [, setUser] = useRecoilState(userInfo);
 
-  // 控制左侧菜单是否要默认收缩 / 展开
+  // 控制左侧菜单是否要默认    收缩 / 展开
   const [collapsed, setCollapsed] = useState<boolean>(false);
 
   // 动态路由过滤之后的菜单数据
   const [filterMenuItemsData, setFilterMenuItemsData] = useState<
-    MenuItemType[]
+    Array<MenuItemType>
   >([]);
 
   // 面包屑数组
@@ -64,25 +64,9 @@ export default (): MenuComponentContextConfig => {
     }
   };
 
-  // 与 findCurrentRouterKey 函数配合找到具体对应的路由 key label
-  const findMenuItems = (menuItems: MenuItemType[], routerKey: string) => {
-    for (const item of menuItems) {
-      if (item.key === routerKey) {
-        return item;
-      }
-      if (item.children && Array.isArray(item.children)) {
-        const result: any = findMenuItems(item.children, routerKey);
-        if (result) {
-          return result;
-        }
-      }
-    }
-    return [];
-  };
-
   // 查询当前点击路由对应的整个路由信息（label key）
   const findCurrentRouterKey = (
-    menuData: MenuItemType[],
+    menuData: Array<MenuItemType>,
     currentRouterKey: string,
   ) => {
     // 如果面包屑数组没有当前这个路由信息 就添加到面包屑数组
@@ -96,7 +80,7 @@ export default (): MenuComponentContextConfig => {
 
   // 动态生成路由方法
   const filterMenu = (
-    menuData: MenuItemType[],
+    menuData: Array<MenuItemType>,
     keysData: Array<string>,
   ): MenuItemType[] => {
     return menuData.filter((item: MenuItemType) => {
@@ -112,7 +96,10 @@ export default (): MenuComponentContextConfig => {
   } = theme.useToken();
 
   // 默认展开二级菜单
-  const findParentKey = (menuItems: MenuItemType[], targetKey: string): any => {
+  const findParentKey = (
+    menuItems: Array<MenuItemType>,
+    targetKey: string,
+  ): any => {
     for (const item of menuItems) {
       if (item.key === targetKey) {
         return item.key;
@@ -140,6 +127,25 @@ export default (): MenuComponentContextConfig => {
     setCurrentDefaultOpenKeys(v);
   };
 
+  // 与 findCurrentRouterKey 函数配合找到具体对应的路由 key label
+  const findMenuItems = (
+    menuItems: Array<MenuItemType>,
+    routerKey: string,
+  ): any => {
+    for (const item of menuItems) {
+      if (item.key === routerKey) {
+        return item;
+      }
+      if (item.children && Array.isArray(item.children)) {
+        const result = findMenuItems(item.children, routerKey);
+        if (result) {
+          return result;
+        }
+      }
+    }
+    return null;
+  };
+
   // 点击 tabs ( 切换 )
   const TabsChange = (key: string) => {
     setBreadCrumbsActiveKey(key);
@@ -164,21 +170,21 @@ export default (): MenuComponentContextConfig => {
       copyBreadCrumbs.splice(findKeyItem, 1);
     }
     setBreadCrumbs((currentValue) => {
-      setBreadCrumbsActiveKey(copyBreadCrumbs.at(-1).key);
       setCurrentPath(copyBreadCrumbs.at(-1).key);
       pushRouter(`/${copyBreadCrumbs.at(-1).key}`);
+      setBreadCrumbsActiveKey(copyBreadCrumbs.at(-1).key);
       setCurrentDefaultOpenKeys([copyBreadCrumbs.at(-1).key.split("-")[0]]);
       return copyBreadCrumbs;
     });
   };
 
   // 刚进入页面 添加当前页面的面包屑
-  const findMenuItemByKey = (menuItems: MenuItemType[]) => {
+  const findMenuItemByKey = (menuItems: Array<MenuItemType>) => {
     for (const item of menuItems) {
       if (item.key === location.pathname.split("/")[1]) {
         setBreadCrumbs((prevMianbao) => [...prevMianbao, item]);
         if (item.key.includes("-")) {
-          // 此处是展开二级路由对应的一级路由 根据 - ；如果公司有对应需求可更改 split 字符
+          // 此处是展开二级路由对应的一级路由 根据 '-' ；如果公司有对应需求可更改 split 字符
           setCurrentDefaultOpenKeys([item.key.split("-")[0]]);
         }
       }
