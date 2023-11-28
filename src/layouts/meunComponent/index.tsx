@@ -4,6 +4,7 @@ import store from "./hooks/hooks";
 
 export default () => {
   const storeData = store();
+
   return (
     <MenuComponentContext.Provider value={storeData}>
       <MenuComponent />

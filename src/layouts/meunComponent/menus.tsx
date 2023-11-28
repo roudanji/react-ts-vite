@@ -10,7 +10,7 @@ export const menuItems: MenuItemType[] = [
   {
     key: "test",
     icon: <UserOutlined />,
-    label: "测试",
+    label: "测逝",
   },
   {
     key: "editor",
@@ -20,6 +20,14 @@ export const menuItems: MenuItemType[] = [
       {
         key: "editor-editor",
         label: "编辑器",
+      },
+      {
+        key: "editor-roudancongji",
+        label: "肉蛋葱鸡",
+      },
+      {
+        key: "editor-lajiaochaorou",
+        label: "辣椒炒肉",
       },
     ],
   },

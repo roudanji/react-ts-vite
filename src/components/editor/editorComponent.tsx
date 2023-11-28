@@ -13,7 +13,6 @@ type MyEditorProps = {
 };
 
 // todo onHtmlChange 回调获取 html 结构    value 用于回显
-
 const MyEditor = ({ onHtmlChange, value = "" }: MyEditorProps) => {
   // editor 实例
   const [editor, setEditor] = useState<IDomEditor | null>(null);

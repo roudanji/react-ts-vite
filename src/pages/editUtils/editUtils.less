@@ -5,28 +5,30 @@
   flex-direction: column;
 
   .edit {
-    margin-top: 20px;
+    // margin-top: 20px;
     width: 100%;
-    height: 60%;
+    height: 500px;
+    overflow: scroll;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.13);
   }
-
-  .show_html_box {
-    width: 100%;
-    height: 40%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.582);
-    .left {
-      width: 50%;
-      height: 100%;
-      border-right: 1px solid rgba(128, 128, 128, 0.582);
-      border-left: 1px solid rgba(128, 128, 128, 0.582);
-    }
-    .right {
-      width: 50%;
-      height: 100%;
-      border-right: 1px solid rgba(128, 128, 128, 0.582);
-    }
+}
+.show_html_box {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.582);
+  .leftHtml {
+    width: 50%;
+    height: 100%;
+    border-right: 1px solid rgba(128, 128, 128, 0.582);
+    border-left: 1px solid rgba(128, 128, 128, 0.582);
+  }
+  .rightHtml {
+    width: 50%;
+    height: 100%;
+    overflow: scroll;
+    border-right: 1px solid rgba(128, 128, 128, 0.582);
   }
 }

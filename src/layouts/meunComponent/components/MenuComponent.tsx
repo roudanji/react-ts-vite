@@ -99,6 +99,7 @@ export default () => {
           style={{
             margin: "0 5px",
             minHeight: 360,
+            overflow: "scroll",
             background: colorBgContainer,
           }}
         >

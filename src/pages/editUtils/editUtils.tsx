@@ -16,11 +16,12 @@ export default () => {
       <div className="edit">
         <CustomEditor onHtmlChange={getHtmlDomData} value="" />
       </div>
+
       <div className="show_html_box">
-        <div className="left">
+        <div className="leftHtml">{editorHtml}</div>
+        <div className="rightHtml">
           <div dangerouslySetInnerHTML={{ __html: editorHtml }} />
         </div>
-        <div className="right">{editorHtml}</div>
       </div>
     </div>
   );

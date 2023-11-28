@@ -59,7 +59,11 @@ export default (): MenuComponentContextConfig => {
 
         const { jurisdiction } = res.data.data;
         // 读取成功之后 动态生成路由
-        setFilterMenuItemsData(filterMenu(menuItems, jurisdiction));
+        console.log(
+          "findMenuDataByKey(menuItems, jurisdiction)",
+          findMenuDataByKey(menuItems, jurisdiction),
+        );
+        setFilterMenuItemsData(findMenuDataByKey(menuItems, jurisdiction));
       }
     }
   };
@@ -79,16 +83,20 @@ export default (): MenuComponentContextConfig => {
   };
 
   // 动态生成路由方法
-  const filterMenu = (
-    menuData: Array<MenuItemType>,
-    keysData: Array<string>,
-  ): MenuItemType[] => {
-    return menuData.filter((item: MenuItemType) => {
-      if (keysData.includes(item.key)) return true;
-      if (item.children?.length) return filterMenu(item.children, keysData);
-      console.error("菜单没有可能是后端的 key 值反错了 打后端屁股");
-      return false;
-    });
+  const findMenuDataByKey = (menuData: any, selectedKeys: any) => {
+    return menuData
+      .map((item: any) => {
+        if (item.children) {
+          const filterMenuItemsDataByKey = item.children.filter((child: any) =>
+            selectedKeys.includes(child.key),
+          );
+          return filterMenuItemsDataByKey.length > 0
+            ? { ...item, children: filterMenuItemsDataByKey }
+            : null;
+        }
+        return selectedKeys.includes(item.key) ? item : null;
+      })
+      .filter((item: any) => item !== null);
   };
 
   const {
@@ -200,6 +208,10 @@ export default (): MenuComponentContextConfig => {
     findMenuItemByKey(menuItems);
     setCurrentPath(location.pathname.split("/")[1]);
   }, [menuState]);
+
+  // useEffect(() => {
+  //   console.log("x");
+  // }, []);
 
   // menu 菜单以及面包屑所需配置
   const menuConfig: menuConfigType = {
