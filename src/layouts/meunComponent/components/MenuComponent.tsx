@@ -98,7 +98,6 @@ export default () => {
         <Content
           style={{
             margin: "0 5px",
-            padding: 10,
             minHeight: 360,
             background: colorBgContainer,
           }}

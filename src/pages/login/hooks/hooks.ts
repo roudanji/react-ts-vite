@@ -1,15 +1,17 @@
 import showMessage from "@/components/messageComponent/message";
+import { menuUseeffect } from "@/recoil-stroe/menuUseeffect";
 import { isInterfaceSuccess } from "@/utils/utils";
 import { useForm } from "antd/es/form/Form";
 import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import { loginFormType } from "../type/hooksType";
 import { LoginContextConfig, loginConfigType } from "../type/type";
 
 export default (): LoginContextConfig => {
   const routerPush = useNavigate();
-
+  const [, setMenuState] = useRecoilState(menuUseeffect);
   // 登录 Form 实例
   const [loginForm] = useForm();
 
@@ -21,6 +23,7 @@ export default (): LoginContextConfig => {
       showMessage("success", `${res.data.message}`);
       localStorage.setItem("token", token);
       routerPush("/home");
+      setMenuState(false);
     } else {
       showMessage("error", res.data.message);
     }

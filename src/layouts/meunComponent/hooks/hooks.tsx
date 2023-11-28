@@ -1,3 +1,4 @@
+import { menuUseeffect } from "@/recoil-stroe/menuUseeffect";
 import { userInfo } from "@/recoil-stroe/userInfo";
 import { isInterfaceSuccess } from "@/utils/utils";
 import { theme } from "antd";
@@ -5,7 +6,7 @@ import { MenuProps } from "antd/lib";
 import axios from "axios";
 import { ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { menuItems } from "../menus";
 import {
   MenuComponentContextConfig,
@@ -14,6 +15,8 @@ import {
 } from "../type/type";
 
 export default (): MenuComponentContextConfig => {
+  const menuState = useRecoilValue(menuUseeffect);
+
   // 获取当前路由的一级路径，用于设置 defaultSelectedKeys
   const [currentPath, setCurrentPath] = useState(
     location.pathname.split("/")[1],
@@ -46,9 +49,6 @@ export default (): MenuComponentContextConfig => {
     Array<string>
   >([]);
 
-  // 是否发起获取用户信息接口
-  const [isGetUserInfo, setIsGetUserInfo] = useState<boolean>(false);
-
   // 获取当前用户信息
   const getUserInfo = async () => {
     const token = localStorage.getItem("token");
@@ -56,7 +56,7 @@ export default (): MenuComponentContextConfig => {
       const res = await axios.get("/getuserinfo");
       if (isInterfaceSuccess(res.data.code)) {
         setUser(res.data.data);
-        console.log("res.data.data", res.data.data);
+
         const { jurisdiction } = res.data.data;
         // 读取成功之后 动态生成路由
         setFilterMenuItemsData(filterMenu(menuItems, jurisdiction));
@@ -133,7 +133,6 @@ export default (): MenuComponentContextConfig => {
     setBreadCrumbsActiveKey(e.key);
     pushRouter(e.key);
     setCurrentPath(e.key);
-    setIsGetUserInfo(true);
   };
 
   // 二级路由点击展开菜单触发事件
@@ -147,12 +146,10 @@ export default (): MenuComponentContextConfig => {
     pushRouter(key);
     setCurrentDefaultOpenKeys([findParentKey(menuItems, key)]);
     setCurrentPath(key);
-    setIsGetUserInfo(true);
   };
 
   // 点击关闭 tabs 按钮
   const TabsEdit = (key: string) => {
-    setIsGetUserInfo(true);
     const copyBreadCrumbs:
       | Array<{
           label: string;
@@ -169,8 +166,8 @@ export default (): MenuComponentContextConfig => {
     setBreadCrumbs((currentValue) => {
       setBreadCrumbsActiveKey(copyBreadCrumbs.at(-1).key);
       setCurrentPath(copyBreadCrumbs.at(-1).key);
-      setCurrentDefaultOpenKeys([copyBreadCrumbs.at(-1).key]);
       pushRouter(`/${copyBreadCrumbs.at(-1).key}`);
+      setCurrentDefaultOpenKeys([copyBreadCrumbs.at(-1).key.split("-")[0]]);
       return copyBreadCrumbs;
     });
   };
@@ -178,7 +175,7 @@ export default (): MenuComponentContextConfig => {
   // 刚进入页面 添加当前页面的面包屑
   const findMenuItemByKey = (menuItems: MenuItemType[]) => {
     for (const item of menuItems) {
-      if (item.key === currentPath) {
+      if (item.key === location.pathname.split("/")[1]) {
         setBreadCrumbs((prevMianbao) => [...prevMianbao, item]);
         if (item.key.includes("-")) {
           // 此处是展开二级路由对应的一级路由 根据 - ；如果公司有对应需求可更改 split 字符
@@ -189,28 +186,14 @@ export default (): MenuComponentContextConfig => {
         findMenuItemByKey(item.children);
       }
     }
-    return [];
+    return null;
   };
-
-  // 初始化获取面包屑第一信息
-  const getBrendCrumsData = () => {
-    findMenuItemByKey(menuItems);
-    setBreadCrumbs([
-      {
-        key: "home",
-        label: "首页",
-      },
-    ]);
-    setCurrentPath("home");
-  };
-
-  useEffect(() => {
-    getBrendCrumsData();
-  }, []);
 
   useEffect(() => {
     getUserInfo();
-  }, [location.pathname]);
+    findMenuItemByKey(menuItems);
+    setCurrentPath(location.pathname.split("/")[1]);
+  }, [menuState]);
 
   // menu 菜单以及面包屑所需配置
   const menuConfig: menuConfigType = {

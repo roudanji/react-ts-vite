@@ -48,4 +48,4 @@ const ShowMessage = (
 export default ShowMessage;
 
 // import showMessage from "@/components/messageComponent/message";
-// showMessage("error", res.data.message, 3);
+// showMessage("error", res.data.message);
