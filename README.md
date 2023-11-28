@@ -26,7 +26,7 @@ If you are developing a production application, we recommend updating the config
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
 - ![image](https://github.com/roudanji/react-ts-vite/assets/136449369/f409f4f8-151d-4964-9181-74c4825858f5)
-  已完成 Tabs 面包屑功能，关闭，添加，点击跳转，关闭跳转所有逻辑。
+  已完成 Tabs 导航栏功能，关闭，添加，点击跳转，关闭跳转所有逻辑。
 
 动态路由已设置，在 MenuComponent.tsx 组件中根据用户信息的 jurisdiction 字段数组中的元素 "key" 去生成对应用户的菜单。
 
