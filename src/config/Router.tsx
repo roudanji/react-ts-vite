@@ -1,6 +1,6 @@
 import { Skeleton } from "antd";
 import React, { Suspense } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 // 登录
 import Login from "@/pages/login/index";
@@ -28,6 +28,11 @@ const lazyRouter = (routerComponent: React.ReactElement) => {
 };
 
 const RouterData = () => {
+  const location = useLocation();
+  const ifLoginPathname = location.pathname === "/login";
+  if (ifLoginPathname) {
+    return <Login />;
+  }
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/login" replace />} />

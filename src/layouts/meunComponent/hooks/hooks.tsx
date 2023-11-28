@@ -1,12 +1,12 @@
 import { userInfo } from "@/recoil-stroe/userInfo";
 import { isInterfaceSuccess } from "@/utils/utils";
-import { EditOutlined, UserOutlined } from "@ant-design/icons";
 import { theme } from "antd";
 import { MenuProps } from "antd/lib";
 import axios from "axios";
 import { ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
+import { menuItems } from "../menus";
 import {
   MenuComponentContextConfig,
   MenuItemType,
@@ -14,30 +14,6 @@ import {
 } from "../type/type";
 
 export default (): MenuComponentContextConfig => {
-  const menuItems: MenuItemType[] = [
-    {
-      key: "home",
-      icon: <UserOutlined />,
-      label: "首页",
-    },
-    {
-      key: "test",
-      icon: <UserOutlined />,
-      label: "测试",
-    },
-    {
-      key: "editor",
-      icon: <EditOutlined />,
-      label: "editor",
-      children: [
-        {
-          key: "editor-editor",
-          label: "编辑器",
-        },
-      ],
-    },
-  ];
-
   // 获取当前路由的一级路径，用于设置 defaultSelectedKeys
   const [currentPath, setCurrentPath] = useState(
     location.pathname.split("/")[1],
@@ -70,6 +46,9 @@ export default (): MenuComponentContextConfig => {
     Array<string>
   >([]);
 
+  // 是否发起获取用户信息接口
+  const [isGetUserInfo, setIsGetUserInfo] = useState<boolean>(false);
+
   // 获取当前用户信息
   const getUserInfo = async () => {
     const token = localStorage.getItem("token");
@@ -80,7 +59,7 @@ export default (): MenuComponentContextConfig => {
         console.log("res.data.data", res.data.data);
         const { jurisdiction } = res.data.data;
         // 读取成功之后 动态生成路由
-        setFilterMenuItemsData(filterMenuItems(menuItems, jurisdiction));
+        setFilterMenuItemsData(filterMenu(menuItems, jurisdiction));
       }
     }
   };
@@ -116,22 +95,16 @@ export default (): MenuComponentContextConfig => {
   };
 
   // 动态生成路由方法
-  const filterMenuItems = (
+  const filterMenu = (
     menuData: MenuItemType[],
     keysData: Array<string>,
-  ) => {
-    const filteredItems = menuData.filter((item: MenuItemType): any => {
-      if (keysData.includes(item.key)) {
-        return true;
-      }
-      if (item.children) {
-        item.children = filterMenuItems(item.children, keysData);
-        return item.children.length > 0;
-      }
+  ): MenuItemType[] => {
+    return menuData.filter((item: MenuItemType) => {
+      if (keysData.includes(item.key)) return true;
+      if (item.children?.length) return filterMenu(item.children, keysData);
+      console.error("菜单没有可能是后端的 key 值反错了 打后端屁股");
       return false;
     });
-
-    return filteredItems;
   };
 
   const {
@@ -160,6 +133,7 @@ export default (): MenuComponentContextConfig => {
     setBreadCrumbsActiveKey(e.key);
     pushRouter(e.key);
     setCurrentPath(e.key);
+    setIsGetUserInfo(true);
   };
 
   // 二级路由点击展开菜单触发事件
@@ -173,10 +147,12 @@ export default (): MenuComponentContextConfig => {
     pushRouter(key);
     setCurrentDefaultOpenKeys([findParentKey(menuItems, key)]);
     setCurrentPath(key);
+    setIsGetUserInfo(true);
   };
 
   // 点击关闭 tabs 按钮
   const TabsEdit = (key: string) => {
+    setIsGetUserInfo(true);
     const copyBreadCrumbs:
       | Array<{
           label: string;
@@ -216,15 +192,25 @@ export default (): MenuComponentContextConfig => {
     return [];
   };
 
-  // 初始化加载接口
-  const initialGet = async () => {
-    await getUserInfo();
+  // 初始化获取面包屑第一信息
+  const getBrendCrumsData = () => {
+    findMenuItemByKey(menuItems);
+    setBreadCrumbs([
+      {
+        key: "home",
+        label: "首页",
+      },
+    ]);
+    setCurrentPath("home");
   };
 
   useEffect(() => {
-    initialGet();
-    findMenuItemByKey(menuItems);
-  }, [location]);
+    getBrendCrumsData();
+  }, []);
+
+  useEffect(() => {
+    getUserInfo();
+  }, [location.pathname]);
 
   // menu 菜单以及面包屑所需配置
   const menuConfig: menuConfigType = {
