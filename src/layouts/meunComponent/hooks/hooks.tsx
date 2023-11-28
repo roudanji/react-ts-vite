@@ -33,7 +33,7 @@ export default (): MenuComponentContextConfig => {
 
   // 动态路由过滤之后的菜单数据
   const [filterMenuItemsData, setFilterMenuItemsData] = useState<
-    Array<MenuItemType>
+    Array<MenuItemType> | any
   >([]);
 
   // 面包屑数组
@@ -83,12 +83,15 @@ export default (): MenuComponentContextConfig => {
   };
 
   // 动态生成路由方法
-  const findMenuDataByKey = (menuData: any, selectedKeys: any) => {
+  const findMenuDataByKey = (
+    menuData: Array<MenuItemType>,
+    selectedKeys: Array<string>,
+  ) => {
     return menuData
-      .map((item: any) => {
+      .map((item: MenuItemType) => {
         if (item.children) {
-          const filterMenuItemsDataByKey = item.children.filter((child: any) =>
-            selectedKeys.includes(child.key),
+          const filterMenuItemsDataByKey = item.children.filter(
+            (child: MenuItemType) => selectedKeys.includes(child.key),
           );
           return filterMenuItemsDataByKey.length > 0
             ? { ...item, children: filterMenuItemsDataByKey }
@@ -96,7 +99,7 @@ export default (): MenuComponentContextConfig => {
         }
         return selectedKeys.includes(item.key) ? item : null;
       })
-      .filter((item: any) => item !== null);
+      .filter((item: MenuItemType | null) => item !== null);
   };
 
   const {
