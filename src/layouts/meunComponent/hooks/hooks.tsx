@@ -60,10 +60,10 @@ export default (): MenuComponentContextConfig => {
         const { jurisdiction } = res.data.data;
         // 读取成功之后 动态生成路由
 
-        const result = findMenuDataByKey(menuItems, jurisdiction);
-        setFilterMenuItemsData(
-          result.filter((item) => item !== null) as MenuItemType[],
-        );
+        const result = findMenuDataByKey(menuItems, jurisdiction).filter(
+          (item) => item !== null,
+        ) as Array<MenuItemType>;
+        setFilterMenuItemsData(result);
       }
     }
   };

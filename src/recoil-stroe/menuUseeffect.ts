@@ -7,5 +7,5 @@ export const menuUseeffect: RecoilState<boolean> = atom({
 
 // import { menuUseeffect } from "@/recoil-stroe/menuUseeffect";
 // import { useRecoilValue } from "recoil";
-// const currentUserInfo = useRecoilValue(menuUseeffect);
-// console.log("currentUserInfo", currentUserInfo);
+// const currentMenuUseeffect = useRecoilValue(menuUseeffect);
+// console.log("currentMenuUseeffect", currentMenuUseeffect);
