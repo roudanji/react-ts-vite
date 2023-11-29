@@ -1,18 +1,23 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import funnyImg from "@/assets/funny.gif";
 import RouterData from "@/config/Router";
+import { userInfo } from "@/recoil-stroe/userInfo";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { Button, Layout, Menu, Tabs } from "antd";
+import type { MenuProps } from "antd";
+import { Button, Dropdown, Layout, Menu, Tabs } from "antd";
 import { useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 import { MenuComponentContext } from "../context";
 import "./MenuComponent.less";
-
 const { Header, Sider, Content } = Layout;
 
 export default () => {
   const location = useLocation();
   const ifLoginPathname = location.pathname === "/login";
 
+  const pushRouter = useNavigate();
   const { menuConfig } = useContext(MenuComponentContext);
 
   const {
@@ -28,7 +33,25 @@ export default () => {
     TabsChange,
     setCollapsed,
     menuOnOpenChange,
+    setBreadCrumbs,
   } = menuConfig;
+
+  // 当前用户信息
+  const currentUserInfo = useRecoilValue(userInfo);
+
+  const onClick: MenuProps["onClick"] = ({ key }) => {
+    console.log("key", key);
+    if (key === "1") {
+      setBreadCrumbs([]);
+      pushRouter("/login");
+    }
+  };
+  const items: MenuProps["items"] = [
+    {
+      label: "退出登录",
+      key: "1",
+    },
+  ];
 
   return (
     <Layout>
@@ -80,7 +103,16 @@ export default () => {
                   }}
                 />
               </div>
-              <div style={{ color: "#fff" }}>头像显示部分</div>
+              <div className="user_selector_box">
+                <Dropdown menu={{ items, onClick }} placement="bottom">
+                  <span
+                    style={{ color: "#fff" }}
+                    onClick={(e: any) => e.preventDefault()}
+                  >
+                    {currentUserInfo ? currentUserInfo.username : ""}
+                  </span>
+                </Dropdown>
+              </div>
             </Header>
             <div className="bread_box">
               <Tabs

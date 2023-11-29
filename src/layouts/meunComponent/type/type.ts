@@ -20,6 +20,7 @@ export type menuConfigType = {
   getMenuKey: MenuProps["onClick"];
   setCollapsed: (params: boolean) => void;
   menuOnOpenChange: (params: Array<string | "">) => void;
+  setBreadCrumbs: (params: any) => void;
 };
 
 // 菜单类型配置

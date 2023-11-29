@@ -9,7 +9,7 @@ Mock.mock("/getuserinfo", "get", (options) => {
       code: 200,
       message: "获取用户信息成功",
       data: {
-        username: "葱鸡",
+        username: "肉蛋葱鸡",
         role: "超级管理员",
         sex: "男",
         age: 20,

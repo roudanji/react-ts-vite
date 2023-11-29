@@ -6,7 +6,6 @@ import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import "./index.less";
 // Mock 模拟
-import "../mock/homeTable.ts";
 import "../mock/login.ts";
 import "../mock/userInfo.ts";
 
