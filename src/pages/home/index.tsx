@@ -6,7 +6,7 @@ export default () => {
     <div className="home_box">
       <div className="vertical">
         <Space direction="vertical" size="middle" style={{ width: "100%" }}>
-          <Badge.Ribbon text="引导" color="cyan">
+          <Badge.Ribbon text="闫鹏大飞机" color="cyan">
             <Card title="React Context 开发模式" size="small">
               <p>
                 可前往 scr / layouts / meunComponent || scr / pages / login 查看
@@ -17,7 +17,7 @@ export default () => {
             </Card>
           </Badge.Ribbon>
 
-          <Badge.Ribbon text="引导" color="cyan">
+          <Badge.Ribbon text="闫鹏大飞机" color="cyan">
             <Card
               title="代码格式规范 Eslint / Prettier - Code formatter 插件"
               size="small"
@@ -30,7 +30,7 @@ export default () => {
             </Card>
           </Badge.Ribbon>
 
-          <Badge.Ribbon text="引导" color="cyan">
+          <Badge.Ribbon text="闫鹏大飞机" color="cyan">
             <Card title="axios 封装" size="small">
               <p>src / utils / request.ts </p>
               <br />
@@ -38,7 +38,7 @@ export default () => {
             </Card>
           </Badge.Ribbon>
 
-          <Badge.Ribbon text="引导" color="cyan">
+          <Badge.Ribbon text="闫鹏大飞机" color="cyan">
             <Card title="组件库主题  / 左侧菜单栏主题" size="small">
               <p>src / index.less </p>
               <br />
@@ -51,7 +51,7 @@ export default () => {
             </Card>
           </Badge.Ribbon>
 
-          <Badge.Ribbon text="引导" color="cyan">
+          <Badge.Ribbon text="闫鹏大飞机" color="cyan">
             <Card title="导航栏 / 面包屑" size="small">
               <p>使用的是 Tabs 组件实现</p>
               <br />
@@ -65,7 +65,7 @@ export default () => {
             </Card>
           </Badge.Ribbon>
 
-          <Badge.Ribbon text="引导" color="cyan">
+          <Badge.Ribbon text="闫鹏大飞机" color="cyan">
             <Card title="动态路由" size="small">
               <p>Mock / userInfo / jurisdiction 字段</p>
               <br />
@@ -75,7 +75,7 @@ export default () => {
             </Card>
           </Badge.Ribbon>
 
-          <Badge.Ribbon text="引导" color="cyan">
+          <Badge.Ribbon text="闫鹏大飞机" color="cyan">
             <Card title="富文本编辑器" size="small">
               <p>借助的是 wangEditor 插件库</p>
               <br />
@@ -88,7 +88,7 @@ export default () => {
             </Card>
           </Badge.Ribbon>
 
-          <Badge.Ribbon text="引导" color="cyan">
+          <Badge.Ribbon text="闫鹏大飞机" color="cyan">
             <Card title="message / notification 组件二封" size="small">
               <p>这两个组件进行了封装 可以节省大量重复性代码</p>
               <br />
@@ -98,7 +98,7 @@ export default () => {
             </Card>
           </Badge.Ribbon>
 
-          <Badge.Ribbon text="引导" color="cyan">
+          <Badge.Ribbon text="闫鹏大飞机" color="cyan">
             <Card title="判断接口是否正常返回" size="small">
               <p>封装了映射函数建议整体项目使用 可以节省大量重复判断</p>
               <br />
