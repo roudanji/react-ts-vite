@@ -7,6 +7,30 @@ export default () => {
       <div className="vertical">
         <Space direction="vertical" size="middle" style={{ width: "100%" }}>
           <Badge.Ribbon text="引导" color="cyan">
+            <Card title="React Context 开发模式" size="small">
+              <p>
+                可前往 scr / layouts / meunComponent || scr / pages / login 查看
+              </p>
+              <br />
+              <p>完全避免大量拆分组件之后互相传值导致代码冗余的问题</p>
+              <br />
+            </Card>
+          </Badge.Ribbon>
+
+          <Badge.Ribbon text="引导" color="cyan">
+            <Card
+              title="代码格式规范 Eslint / Prettier - Code formatter 插件"
+              size="small"
+            >
+              <p>具体规范配置在根目录 .eslintrc.cjs 文件 ( 规范文件 )</p>
+              <br />
+              <p>.eslintignore 文件内可编写你不需要格式的文件</p>
+              <br />
+              <p>使用 pnpm format 可一键对全局项目代码进行格式化</p>
+            </Card>
+          </Badge.Ribbon>
+
+          <Badge.Ribbon text="引导" color="cyan">
             <Card title="axios 封装" size="small">
               <p>src / utils / request.ts </p>
               <br />
