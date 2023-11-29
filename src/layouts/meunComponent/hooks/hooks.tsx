@@ -212,10 +212,6 @@ export default (): MenuComponentContextConfig => {
     setCurrentPath(location.pathname.split("/")[1]);
   }, [menuState]);
 
-  // useEffect(() => {
-  //   console.log("x");
-  // }, []);
-
   // menu 菜单以及面包屑所需配置
   const menuConfig: menuConfigType = {
     collapsed,

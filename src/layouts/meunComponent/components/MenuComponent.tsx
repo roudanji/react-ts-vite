@@ -61,7 +61,7 @@ export default () => {
                 alignItems: "center",
                 justifyContent: "space-between",
                 height: "40px",
-                backgroundColor: "#001529",
+                backgroundColor: "#304056",
               }}
             >
               <div>

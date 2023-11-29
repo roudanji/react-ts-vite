@@ -35,3 +35,77 @@ body {
 ::-webkit-scrollbar-thumb {
   display: none !important;
 }
+
+// 左侧菜单主题
+.text-align-right {
+  text-align: right;
+}
+.universallayout-menu {
+  background-color: #304056 !important;
+}
+.ant-menu-item {
+  background-color: #304056 !important;
+}
+.ant-menu-inline {
+  background-color: #304056 !important;
+}
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: #28394d !important;
+  .ant-menu-title-content {
+    a {
+      .anticon {
+        path svg {
+          fill: #51a7bc;
+        }
+        svg {
+          use {
+            color: #51a7bc !important;
+            fill: #51a7bc !important;
+          }
+        }
+      }
+    }
+  }
+}
+.ant-menu-dark .ant-menu-item-selected .ant-menu-item-icon + span,
+.ant-menu-dark .ant-menu-item-selected .anticon + span {
+  color: #51a7bc !important;
+}
+.ant-menu-dark .ant-menu-item:hover {
+  .ant-menu-title-content {
+    .anticon {
+      svg {
+        use {
+          color: #51a7bc !important;
+          fill: #51a7bc !important;
+        }
+      }
+    }
+    span {
+      color: #51a7bc;
+    }
+  }
+}
+// 个人中心划入字体修改
+.ant-dropdown-menu-item:hover,
+.ant-dropdown-menu-submenu-title:hover,
+.ant-dropdown-menu-item.ant-dropdown-menu-item-active,
+.ant-dropdown-menu-item.ant-dropdown-menu-submenu-title-active,
+.ant-dropdown-menu-submenu-title.ant-dropdown-menu-item-active,
+.ant-dropdown-menu-submenu-title.ant-dropdown-menu-submenu-title-active:hover {
+  color: #51a7bc;
+}
+.ant-layout-sider-children {
+  background-color: #304056;
+}
+.ant-menu {
+  background-color: #304056;
+}
+#rc-menu-uuid-41196-1-editor-popup {
+  background-color: #304056;
+}
+
+// 当前选择到的菜单字体颜色
+.ant-menu-item-selected {
+  color: #51a7a3 !important;
+}
