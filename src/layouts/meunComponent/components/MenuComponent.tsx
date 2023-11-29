@@ -40,7 +40,6 @@ export default () => {
   const currentUserInfo = useRecoilValue(userInfo);
 
   const onClick: MenuProps["onClick"] = ({ key }) => {
-    console.log("key", key);
     if (key === "1") {
       setBreadCrumbs([]);
       pushRouter("/login");
