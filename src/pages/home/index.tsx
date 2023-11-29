@@ -13,7 +13,6 @@ export default () => {
               </p>
               <br />
               <p>完全避免大量拆分组件之后互相传值导致代码冗余的问题</p>
-              <br />
             </Card>
           </Badge.Ribbon>
 
