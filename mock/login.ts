@@ -4,7 +4,7 @@ import Mock from "mockjs";
 Mock.mock("/login", "post", (options) => {
   const { username, password } = JSON.parse(options.body);
 
-  if (username === "666888" && password === "666888") {
+  if (username === "admin" && password === "123456") {
     return {
       code: 200,
       message: "登录成功",

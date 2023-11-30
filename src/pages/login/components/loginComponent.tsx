@@ -35,7 +35,7 @@ export default () => {
               name="username"
               rules={[{ required: true, message: "请输入账号!" }]}
             >
-              <Input placeholder="666888" />
+              <Input placeholder="admin" />
             </Form.Item>
 
             <Form.Item<RequiredFieldType>
@@ -43,7 +43,7 @@ export default () => {
               name="password"
               rules={[{ required: true, message: "请输入密码!" }]}
             >
-              <Input.Password placeholder="666888" />
+              <Input.Password placeholder="123456" />
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 10, span: 16 }}>
