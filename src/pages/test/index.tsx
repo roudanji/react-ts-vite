@@ -7,7 +7,7 @@ export default () => {
   };
 
   return (
-    <div className="xxxxxxxxxxx" style={{ width: "100%" }}>
+    <div className="test_box" style={{ width: "100%" }}>
       <Form onFinish={test} layout="inline">
         <Row gutter={24} wrap={false} justify={"space-between"}>
           <Col span={10}>

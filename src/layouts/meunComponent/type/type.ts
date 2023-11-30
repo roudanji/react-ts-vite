@@ -19,8 +19,8 @@ export type menuConfigType = {
   TabsChange: (params: string) => void;
   getMenuKey: MenuProps["onClick"];
   setCollapsed: (params: boolean) => void;
-  menuOnOpenChange: (params: Array<string | "">) => void;
   setBreadCrumbs: (params: any) => void;
+  menuOnOpenChange: (params: Array<string | "">) => void;
 };
 
 // 菜单类型配置

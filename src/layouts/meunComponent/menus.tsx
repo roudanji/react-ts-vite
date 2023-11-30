@@ -1,5 +1,5 @@
 import {
-  AppleOutlined,
+  AliwangwangOutlined,
   CreditCardOutlined,
   EditOutlined,
   ProjectOutlined,
@@ -16,7 +16,7 @@ export const menuItems: MenuItemType[] = [
   },
   {
     key: "test",
-    icon: <AppleOutlined />,
+    icon: <AliwangwangOutlined />,
     label: "测逝",
   },
   {

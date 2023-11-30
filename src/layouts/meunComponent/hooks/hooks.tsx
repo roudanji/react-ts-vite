@@ -225,8 +225,8 @@ export default (): MenuComponentContextConfig => {
     getMenuKey,
     TabsChange,
     setCollapsed,
-    menuOnOpenChange,
     setBreadCrumbs,
+    menuOnOpenChange,
   };
 
   return {

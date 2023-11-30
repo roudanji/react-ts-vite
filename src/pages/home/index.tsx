@@ -6,13 +6,47 @@ export default () => {
     <div className="home_box">
       <div className="home_left">
         <Space direction="vertical" size="middle" style={{ width: "100%" }}>
-          <Badge.Ribbon text="代码模式" color="magenta">
+          <Badge.Ribbon text="代码开发模式" color="magenta">
             <Card title="React Context 开发模式" size="small">
               <p>
                 可前往 scr / layouts / meunComponent || scr / pages / login 查看
               </p>
               <br />
               <p>完全避免大量拆分组件之后互相传值导致代码冗余的问题</p>
+              <br />
+              <p>
+                componets 文件放你拆分的组件, hooks.tsx
+                放此页面所需要的所有数据和逻辑, type 写你的 TS 类型注解, service
+                可以放此页面所需的接口
+              </p>
+            </Card>
+          </Badge.Ribbon>
+
+          <Badge.Ribbon text="全局组件样式" color="purple">
+            <Card title="组件库主题  / 左侧菜单栏主题" size="small">
+              <p>src / index.less </p>
+              <br />
+              <p>组件库主题具体在 scr / style文件</p>
+              <br />
+              <p>
+                使用 style 文件中的 index.less
+                引入了所有组件库主题使用在了根目录的 index.less 文件
+                (全局滚动条已隐藏样式)
+              </p>
+            </Card>
+          </Badge.Ribbon>
+
+          <Badge.Ribbon text="导航栏 / Tabs" color="pink">
+            <Card title="导航栏 / 面包屑" size="small">
+              <p>使用的是 Tabs 组件实现</p>
+              <br />
+              <p>
+                具体实现逻辑在 src / layouts / meunComponent / hooks / hooks.tsx
+              </p>
+              <br />
+              <p>
+                src / layouts / meunComponent / components / MenuComponent.tsx
+              </p>
             </Card>
           </Badge.Ribbon>
 
@@ -36,33 +70,6 @@ export default () => {
               <p>菜单配置在 layouts / menus.tsx 文件中</p>
               <br />
               <p>具体过滤方法是 findMenuDataByKey 依据 key 值过滤</p>
-            </Card>
-          </Badge.Ribbon>
-
-          <Badge.Ribbon text="全局组件样式" color="purple">
-            <Card title="组件库主题  / 左侧菜单栏主题" size="small">
-              <p>src / index.less </p>
-              <br />
-              <p>组件库主题具体在 scr / style文件</p>
-              <br />
-              <p>
-                使用 style 文件中的 index.less
-                引入了所有组件库主题使用在了根目录的 index.less 文件
-              </p>
-            </Card>
-          </Badge.Ribbon>
-
-          <Badge.Ribbon text="导航栏 / Tabs" color="pink">
-            <Card title="导航栏 / 面包屑" size="small">
-              <p>使用的是 Tabs 组件实现</p>
-              <br />
-              <p>
-                具体实现逻辑在 src / layouts / meunComponent / hooks / hooks.tsx
-              </p>
-              <br />
-              <p>
-                src / layouts / meunComponent / components / MenuComponent.tsx
-              </p>
             </Card>
           </Badge.Ribbon>
         </Space>

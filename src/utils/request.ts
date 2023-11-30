@@ -48,6 +48,8 @@ const service = axios.create({
 service.interceptors.request.use(
   (config: AxiosRequestConfig): any => {
     // todo: implement
+    console.log("请求拦截参数", config);
+
     const TOKEN = "token";
     const { headers, url } = config;
 
@@ -64,6 +66,8 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
   (response: AxiosResponse<PromiseData>) => {
+    console.log("响应拦截参数", response);
+
     const res = response.data;
 
     if (res && res.code === 200) {

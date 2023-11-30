@@ -15,40 +15,48 @@ export default () => {
 
   return (
     <>
-      <div className="login_Box">
-        666888
-        <Form
-          name="basic"
-          form={loginConfig.loginForm}
-          labelCol={{ span: 4 }}
-          wrapperCol={{ span: 17 }}
-          style={{ width: "100%" }}
-          initialValues={{ remember: true }}
-          onFinish={loginConfig.loginOnFinish}
-          autoComplete="off"
-        >
-          <Form.Item<RequiredFieldType>
-            label="账号"
-            name="username"
-            rules={[{ required: true, message: "请输入账号!" }]}
+      <div className="login_Boxx">
+        <div className="form_box">
+          <Form
+            name="basic"
+            form={loginConfig.loginForm}
+            labelCol={{ span: 5 }}
+            wrapperCol={{ span: 16 }}
+            style={{ width: "100%" }}
+            initialValues={{ remember: true }}
+            onFinish={loginConfig.loginOnFinish}
+            autoComplete="off"
           >
-            <Input placeholder="666888" />
-          </Form.Item>
+            <div className="title">
+              <h1>简陋的 Login page</h1>
+            </div>
+            <Form.Item<RequiredFieldType>
+              label="账号"
+              name="username"
+              rules={[{ required: true, message: "请输入账号!" }]}
+            >
+              <Input placeholder="666888" />
+            </Form.Item>
 
-          <Form.Item<RequiredFieldType>
-            label="密码"
-            name="password"
-            rules={[{ required: true, message: "请输入密码!" }]}
-          >
-            <Input.Password placeholder="666888" />
-          </Form.Item>
+            <Form.Item<RequiredFieldType>
+              label="密码"
+              name="password"
+              rules={[{ required: true, message: "请输入密码!" }]}
+            >
+              <Input.Password placeholder="666888" />
+            </Form.Item>
 
-          <Form.Item wrapperCol={{ offset: 10, span: 16 }}>
-            <Button type="primary" htmlType="submit">
-              登录
-            </Button>
-          </Form.Item>
-        </Form>
+            <Form.Item wrapperCol={{ offset: 10, span: 16 }}>
+              <Button
+                style={{ marginTop: "20px" }}
+                type="primary"
+                htmlType="submit"
+              >
+                登录
+              </Button>
+            </Form.Item>
+          </Form>
+        </div>
       </div>
     </>
   );
