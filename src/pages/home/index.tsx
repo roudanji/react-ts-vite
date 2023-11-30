@@ -4,7 +4,7 @@ import "./index.less";
 export default () => {
   return (
     <div className="home_box">
-      <div className="vertical">
+      <div className="home_left">
         <Space direction="vertical" size="middle" style={{ width: "100%" }}>
           <Badge.Ribbon text="引导" color="cyan">
             <Card title="React Context 开发模式" size="small">
@@ -63,7 +63,10 @@ export default () => {
               </p>
             </Card>
           </Badge.Ribbon>
-
+        </Space>
+      </div>
+      <div className="home_right">
+        <Space direction="vertical" size="middle" style={{ width: "99%" }}>
           <Badge.Ribbon text="引导" color="cyan">
             <Card title="动态路由" size="small">
               <p>Mock / userInfo / jurisdiction 字段</p>
