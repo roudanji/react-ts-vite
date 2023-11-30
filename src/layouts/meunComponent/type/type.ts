@@ -15,8 +15,8 @@ export type menuConfigType = {
   filterMenuItemsData: any;
   breadCrumbs: Array<{ label: string; key: string; icon?: ReactNode }>;
   colorBgContainer: any;
-  TabsEdit: (params: string | any) => void;
-  TabsChange: (params: string) => void;
+  breadCrumbsTabsEdit: (params: string | any) => void;
+  breadCrumbsTabsChange: (params: string) => void;
   getMenuKey: MenuProps["onClick"];
   setCollapsed: (params: boolean) => void;
   setBreadCrumbs: (params: any) => void;

@@ -158,7 +158,7 @@ export default (): MenuComponentContextConfig => {
   };
 
   // 点击 tabs ( 切换 )
-  const TabsChange = (key: string) => {
+  const breadCrumbsTabsChange = (key: string) => {
     setBreadCrumbsActiveKey(key);
     pushRouter(key);
     setCurrentDefaultOpenKeys([findParentKey(menuItems, key)]);
@@ -166,7 +166,7 @@ export default (): MenuComponentContextConfig => {
   };
 
   // 点击关闭 tabs 按钮
-  const TabsEdit = (key: string) => {
+  const breadCrumbsTabsEdit = (key: string) => {
     const copyBreadCrumbs:
       | Array<{
           label: string;
@@ -221,9 +221,9 @@ export default (): MenuComponentContextConfig => {
     filterMenuItemsData,
     breadCrumbsActiveKey,
     currentDefaultOpenKeys,
-    TabsEdit,
+    breadCrumbsTabsEdit,
     getMenuKey,
-    TabsChange,
+    breadCrumbsTabsChange,
     setCollapsed,
     setBreadCrumbs,
     menuOnOpenChange,

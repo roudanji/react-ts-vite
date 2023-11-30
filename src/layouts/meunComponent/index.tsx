@@ -1,4 +1,4 @@
-import MenuComponent from "./components/MenuComponent";
+import MenuComponent from "./components/MenuComponent/MenuComponent";
 import { MenuComponentContext } from "./context";
 import store from "./hooks/hooks";
 

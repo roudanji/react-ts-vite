@@ -11,7 +11,7 @@ import { Button, Dropdown, Layout, Menu, Tabs } from "antd";
 import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { MenuComponentContext } from "../context";
+import { MenuComponentContext } from "../../context";
 import "./MenuComponent.less";
 const { Header, Sider, Content } = Layout;
 
@@ -30,9 +30,9 @@ export default () => {
     filterMenuItemsData,
     breadCrumbsActiveKey,
     currentDefaultOpenKeys,
-    TabsEdit,
+    breadCrumbsTabsEdit,
     getMenuKey,
-    TabsChange,
+    breadCrumbsTabsChange,
     setCollapsed,
     setBreadCrumbs,
     menuOnOpenChange,
@@ -114,9 +114,9 @@ export default () => {
           <div className="bread_box">
             <Tabs
               type={breadCrumbs.length === 1 ? "card" : "editable-card"} // 是否显示关闭按钮
-              onChange={TabsChange}
+              onChange={breadCrumbsTabsChange}
               activeKey={breadCrumbsActiveKey || breadCrumbs[0]?.key}
-              onEdit={TabsEdit}
+              onEdit={breadCrumbsTabsEdit}
               items={breadCrumbs}
               hideAdd
             />
