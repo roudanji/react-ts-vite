@@ -8,14 +8,14 @@ import { userInfo } from "@/recoil-stroe/userInfo";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Button, Dropdown, Layout, Menu, Tabs } from "antd";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { MenuComponentContext } from "../../context";
 import "./MenuComponent.less";
 const { Header, Sider, Content } = Layout;
 
-export default () => {
+const MenuComponent = () => {
   const location = useLocation();
   const ifLoginPathname = location.pathname === "/login";
 
@@ -139,3 +139,4 @@ export default () => {
     <Login></Login>
   );
 };
+export default memo(MenuComponent);
