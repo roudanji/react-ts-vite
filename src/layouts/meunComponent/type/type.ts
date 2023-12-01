@@ -1,9 +1,6 @@
+import { ReadonlyProperties } from "@/@types/publicType";
 import { MenuProps } from "antd";
 import { ReactNode } from "react";
-
-type ReadonlyProperties<T> = {
-  readonly [K in keyof T]: T[K];
-};
 
 // 菜单 context 类型
 export type MenuComponentContextConfig = ReadonlyProperties<{
