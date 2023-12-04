@@ -62,6 +62,7 @@ const Login = () => {
       </>
     );
   }, [loginConfig]);
+
   return memoLogin;
 };
 
