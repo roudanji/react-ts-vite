@@ -1,11 +1,12 @@
+import { ReadonlyProperties } from "@/@types/publicType";
 import { nanoid } from "nanoid";
 import { atom } from "recoil";
 
-type DateType = {
+type DateType = ReadonlyProperties<{
   id: string;
   label: string;
   value: number;
-};
+}>;
 
 export const date = atom({
   key: "date",

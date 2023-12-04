@@ -1,12 +1,13 @@
+import { ReadonlyProperties } from "@/@types/publicType";
 import { atom } from "recoil";
 
-type UserInfo = {
+type UserInfo = ReadonlyProperties<{
   username: string;
   role: string;
   sex: string;
   age: number;
   jurisdiction: Array<string>;
-};
+}>;
 
 const userInfoObj = {
   username: "",
