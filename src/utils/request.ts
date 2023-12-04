@@ -1,4 +1,4 @@
-/* eslint-disable no-undefined */
+import { ReadonlyProperties } from "@/@types/publicType";
 import ShowNotification from "@/components/notificationComponent/notification";
 import { notification } from "antd";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
@@ -28,8 +28,8 @@ const whiteList = [""];
 
 // 动态提示接口错误
 const showErrorNotification = (
-  code: number | undefined,
-  messageError: string | undefined,
+  code: number | void,
+  messageError: string | void,
 ) => {
   ShowNotification("error", {
     duration: 3.5,
@@ -59,7 +59,7 @@ service.interceptors.request.use(
     return config;
   },
   (error) => {
-    showErrorNotification(undefined, error);
+    showErrorNotification(void 0, error);
   },
 );
 
@@ -80,16 +80,16 @@ service.interceptors.response.use(
       }, 500);
     }
 
-    showErrorNotification(res.code, undefined);
+    showErrorNotification(res.code, void 0);
 
     return response;
   },
   (error) => {
-    showErrorNotification(undefined, error);
+    showErrorNotification(void 0, error);
   },
 );
 
-type HttpRequest = {
+type HttpRequest = ReadonlyProperties<{
   getUri(config?: AxiosRequestConfig): string;
   get<T = PromiseData>(url: string, config?: AxiosRequestConfig): Promise<T>;
   delete<T = PromiseData>(url: string, config?: AxiosRequestConfig): Promise<T>;
@@ -108,10 +108,10 @@ type HttpRequest = {
     data?: any,
     config?: AxiosRequestConfig,
   ): Promise<T>;
-};
+}>;
 
 // 为了类型安全二次封装
-const request: HttpRequest = {
+const request: ReadonlyProperties<HttpRequest> = {
   getUri: (config?: AxiosRequestConfig) => service.getUri(config),
   get: (url: string, config?: AxiosRequestConfig) => service.get(url, config),
   delete: (url: string, config?: AxiosRequestConfig) =>

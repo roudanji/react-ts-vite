@@ -7,6 +7,6 @@ export type ReadonlyProperties<TypeData> = {
 
 // 公用接口返回 有多余数据使用继承 &
 export type ResponseType = {
-  code: string;
+  code: number;
   message: string;
 };

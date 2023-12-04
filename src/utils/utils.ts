@@ -7,13 +7,6 @@ export const filterOption = (
 ) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
 /**
- * @数组去重 （权限）
- * @param { Array<string | number> }
- */
-export const uniqueArray = (arr: Array<string | number>) =>
-  Array.from(new Set(arr));
-
-/**
  * @param { data }     二进制文件流
  * @param { excelName }   导出的文件名字
  */
@@ -31,7 +24,7 @@ export const ExportExcel = (data: any, excelName: string) => {
 };
 
 /**
- * @判断code码
+ * @code码映射 判断接口 code 是否成功
  * @param { string }
  */
 const codeArray: Record<number, boolean> = {
