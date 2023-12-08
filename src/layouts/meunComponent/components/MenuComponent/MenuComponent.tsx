@@ -22,16 +22,18 @@ const { Header, Sider, Content } = Layout;
 
 const MenuComponent = () => {
   const location = useLocation();
+
   const pushRouter = useNavigate();
+
   const { menuConfig, fullScreenConfig, tabsBreadCrumbsConfig } =
     useContext(MenuComponentContext);
 
   const ifLoginPathname = location.pathname === "/login";
 
+  // 菜单配置
   const {
     collapsed,
     currentPath,
-
     colorBgContainer,
     filterMenuItemsData,
     currentDefaultOpenKeys,
@@ -41,13 +43,15 @@ const MenuComponent = () => {
     menuOnOpenChange,
   } = menuConfig;
 
+  // tabs 面包屑配置
   const {
-    breadCrumbsTabsChange,
-    breadCrumbsActiveKey,
     breadCrumbs,
     breadCrumbsTabsEdit,
+    breadCrumbsActiveKey,
+    breadCrumbsTabsChange,
   } = tabsBreadCrumbsConfig;
 
+  // 全屏配置
   const { isFullScreen, toggleFullscreen } = fullScreenConfig;
 
   // 当前用户信息
@@ -174,7 +178,7 @@ const MenuComponent = () => {
         </Layout>
       </Layout>
     ) : (
-      <Login></Login>
+      <Login />
     );
   }, [menuConfig]);
 
