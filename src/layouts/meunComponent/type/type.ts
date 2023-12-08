@@ -39,7 +39,7 @@ export type tabsBreadCrumbsConfig = {
 // 菜单类型配置
 export type MenuItemType = ReadonlyProperties<{
   key: string;
-  icon?: ReactNode;
+  icon?: React.ReactNode;
   label: string;
   children?: MenuItemType[];
 }>;

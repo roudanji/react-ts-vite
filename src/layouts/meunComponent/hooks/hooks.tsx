@@ -89,10 +89,9 @@ export default (): MenuComponentContextConfig => {
   ): void => {
     // 如果面包屑数组没有当前这个路由信息 就添加到面包屑数组
     if (!menuData.some((item: MenuItemType) => item.key === currentRouterKey)) {
-      setBreadCrumbs((currentValue) => [
-        ...currentValue,
-        findMenuItems(menuItems, currentRouterKey),
-      ]);
+      setBreadCrumbs((currentValue) =>
+        currentValue.concat(findMenuItems(menuItems, currentRouterKey) || []),
+      );
     }
   };
 
@@ -100,7 +99,7 @@ export default (): MenuComponentContextConfig => {
   const findMenuDataByKey = (
     menuData: Array<MenuItemType>,
     selectedKeys: Array<string>,
-  ) => {
+  ): Array<MenuItemType> => {
     return menuData
       .map((item: MenuItemType) => {
         if (item.children) {
@@ -108,12 +107,14 @@ export default (): MenuComponentContextConfig => {
             (child: MenuItemType) => selectedKeys.includes(child.key),
           );
           return filterMenuItemsDataByKey.length > 0
-            ? { ...item, children: filterMenuItemsDataByKey }
+            ? ({ ...item, children: filterMenuItemsDataByKey } as MenuItemType)
             : null;
         }
         return selectedKeys.includes(item.key) ? item : null;
       })
-      .filter((item: MenuItemType | null) => item !== null);
+      .filter(
+        (item: MenuItemType | null): item is MenuItemType => item !== null,
+      );
   };
 
   const {
@@ -124,7 +125,7 @@ export default (): MenuComponentContextConfig => {
   const findParentKey = (
     menuItems: Array<MenuItemType>,
     targetKey: string,
-  ): any => {
+  ): string | null => {
     for (const item of menuItems) {
       if (item.key === targetKey) {
         return item.key;
@@ -136,7 +137,7 @@ export default (): MenuComponentContextConfig => {
         }
       }
     }
-    return [];
+    return null;
   };
 
   // 点击侧边路由进行跳转
@@ -156,7 +157,7 @@ export default (): MenuComponentContextConfig => {
   const findMenuItems = (
     menuItems: Array<MenuItemType>,
     routerKey: string,
-  ): any => {
+  ): MenuItemType | null => {
     for (const item of menuItems) {
       if (item.key === routerKey) {
         return item;
@@ -175,30 +176,24 @@ export default (): MenuComponentContextConfig => {
   const breadCrumbsTabsChange = (key: string): void => {
     setBreadCrumbsActiveKey(key);
     pushRouter(key);
-    setCurrentDefaultOpenKeys([findParentKey(menuItems, key)]);
+    setCurrentDefaultOpenKeys([findParentKey(menuItems, key) || ""]);
     setCurrentPath(key);
   };
 
   // 点击关闭 tabs 按钮
   const breadCrumbsTabsEdit = (key: string): void => {
-    const copyBreadCrumbs:
-      | Array<{
-          label: string;
-          key: string;
-          icon?: ReactNode;
-        }>
-      | any = [...breadCrumbs];
+    const copyBreadCrumbs: Array<MenuItemType> | [] = [...breadCrumbs];
     const findKeyItem = copyBreadCrumbs.findIndex(
       (item: MenuItemType) => item.key === key,
     );
     if (findKeyItem !== -1) {
       copyBreadCrumbs.splice(findKeyItem, 1);
     }
-    setBreadCrumbs((currentValue) => {
-      setCurrentPath(copyBreadCrumbs.at(-1).key);
-      pushRouter(`/${copyBreadCrumbs.at(-1).key}`);
-      setBreadCrumbsActiveKey(copyBreadCrumbs.at(-1).key);
-      setCurrentDefaultOpenKeys([copyBreadCrumbs.at(-1).key.split("-")[0]]);
+    setBreadCrumbs(() => {
+      setCurrentPath(copyBreadCrumbs.at(-1)!.key);
+      pushRouter(`/${copyBreadCrumbs.at(-1)!.key}`);
+      setBreadCrumbsActiveKey(copyBreadCrumbs.at(-1)!.key);
+      setCurrentDefaultOpenKeys([copyBreadCrumbs.at(-1)!.key.split("-")[0]]);
       return copyBreadCrumbs;
     });
   };
@@ -254,18 +249,18 @@ export default (): MenuComponentContextConfig => {
     menuOnOpenChange,
   };
 
-  // 全屏功能所需配置
-  const fullScreenConfig: fullScreenConfigType = {
-    isFullScreen,
-    toggleFullscreen,
-  };
-
   // Tabs 面包屑所需配置
   const tabsBreadCrumbsConfig: tabsBreadCrumbsConfig = {
     breadCrumbs,
     breadCrumbsActiveKey,
     breadCrumbsTabsEdit,
     breadCrumbsTabsChange,
+  };
+
+  // 全屏功能所需配置
+  const fullScreenConfig: fullScreenConfigType = {
+    isFullScreen,
+    toggleFullscreen,
   };
 
   return {
