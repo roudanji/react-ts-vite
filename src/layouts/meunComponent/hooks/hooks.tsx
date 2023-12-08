@@ -22,10 +22,10 @@ export default (): MenuComponentContextConfig => {
   const pushRouter = useNavigate();
 
   // 全屏状态
-  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
 
   // 获取当前路由的一级路径，用于设置 defaultSelectedKeys 初始化选中高亮
-  const [currentPath, setCurrentPath] = useState(
+  const [currentPath, setCurrentPath] = useState<string>(
     location.pathname.split("/")[1],
   );
 
