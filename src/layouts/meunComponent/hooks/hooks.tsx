@@ -12,7 +12,9 @@ import { menuItems } from "../menus";
 import {
   MenuComponentContextConfig,
   MenuItemType,
+  fullScreenConfigType,
   menuConfigType,
+  tabsBreadCrumbsConfig,
 } from "../type/type";
 
 export default (): MenuComponentContextConfig => {
@@ -58,9 +60,6 @@ export default (): MenuComponentContextConfig => {
     if (screenfull.isEnabled) {
       // 切换全屏状态
       screenfull.toggle();
-    } else {
-      // 处理不支持全屏的情况
-      console.warn("Fullscreen is not supported.");
     }
   };
 
@@ -245,23 +244,33 @@ export default (): MenuComponentContextConfig => {
   // menu 菜单以及面包屑所需配置
   const menuConfig: menuConfigType = {
     collapsed,
-    breadCrumbs,
     currentPath,
-    isFullScreen,
     colorBgContainer,
     filterMenuItemsData,
-    breadCrumbsActiveKey,
     currentDefaultOpenKeys,
     getMenuKey,
     setCollapsed,
     setBreadCrumbs,
-    toggleFullscreen,
     menuOnOpenChange,
+  };
+
+  // 全屏功能所需配置
+  const fullScreenConfig: fullScreenConfigType = {
+    isFullScreen,
+    toggleFullscreen,
+  };
+
+  // Tabs 面包屑所需配置
+  const tabsBreadCrumbsConfig: tabsBreadCrumbsConfig = {
+    breadCrumbs,
+    breadCrumbsActiveKey,
     breadCrumbsTabsEdit,
     breadCrumbsTabsChange,
   };
 
   return {
     menuConfig,
+    fullScreenConfig,
+    tabsBreadCrumbsConfig,
   };
 };

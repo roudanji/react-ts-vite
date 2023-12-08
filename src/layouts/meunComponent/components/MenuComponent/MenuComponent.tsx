@@ -22,28 +22,33 @@ const { Header, Sider, Content } = Layout;
 
 const MenuComponent = () => {
   const location = useLocation();
-  const ifLoginPathname = location.pathname === "/login";
-
   const pushRouter = useNavigate();
-  const { menuConfig } = useContext(MenuComponentContext);
+  const { menuConfig, fullScreenConfig, tabsBreadCrumbsConfig } =
+    useContext(MenuComponentContext);
+
+  const ifLoginPathname = location.pathname === "/login";
 
   const {
     collapsed,
     currentPath,
-    breadCrumbs,
-    isFullScreen,
+
     colorBgContainer,
     filterMenuItemsData,
-    breadCrumbsActiveKey,
     currentDefaultOpenKeys,
     getMenuKey,
     setCollapsed,
     setBreadCrumbs,
     menuOnOpenChange,
-    toggleFullscreen,
-    breadCrumbsTabsEdit,
-    breadCrumbsTabsChange,
   } = menuConfig;
+
+  const {
+    breadCrumbsTabsChange,
+    breadCrumbsActiveKey,
+    breadCrumbs,
+    breadCrumbsTabsEdit,
+  } = tabsBreadCrumbsConfig;
+
+  const { isFullScreen, toggleFullscreen } = fullScreenConfig;
 
   // 当前用户信息
   const currentUserInfo = useRecoilValue(userInfo);
