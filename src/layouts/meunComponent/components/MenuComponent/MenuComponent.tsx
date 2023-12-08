@@ -112,6 +112,7 @@ const MenuComponent = () => {
               </div>
               <div className="user_selector_box">
                 <div style={{ marginRight: "20px" }}>
+                  {/* 全屏按钮控制 ICON */}
                   {!isFullScreen ? (
                     <FullscreenOutlined
                       style={{ color: "aqua" }}
