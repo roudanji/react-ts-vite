@@ -10,6 +10,7 @@ export type MenuComponentContextConfig = ReadonlyProperties<{
 // 菜单 tabs Ts 类型
 export type menuConfigType = ReadonlyProperties<{
   collapsed: boolean;
+  isFullScreen: boolean;
   breadCrumbsActiveKey: string;
   currentPath: string;
   currentDefaultOpenKeys: string | null | any;
@@ -19,6 +20,7 @@ export type menuConfigType = ReadonlyProperties<{
   breadCrumbsTabsEdit: (params: string | any) => void;
   breadCrumbsTabsChange: (params: string) => void;
   getMenuKey: MenuProps["onClick"];
+  toggleFullscreen: () => void;
   setCollapsed: (params: boolean) => void;
   setBreadCrumbs: (params: any) => void;
   menuOnOpenChange: (params: Array<string | "">) => void;

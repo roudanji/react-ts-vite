@@ -7,6 +7,7 @@ import axios from "axios";
 import { ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
+import screenfull from "screenfull";
 import { menuItems } from "../menus";
 import {
   MenuComponentContextConfig,
@@ -19,6 +20,9 @@ export default (): MenuComponentContextConfig => {
 
   // 跳转路由
   const pushRouter = useNavigate();
+
+  // 全屏状态
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
   // 获取当前路由的一级路径，用于设置 defaultSelectedKeys 初始化选中高亮
   const [currentPath, setCurrentPath] = useState(
@@ -49,8 +53,19 @@ export default (): MenuComponentContextConfig => {
     Array<string>
   >([]);
 
+  // 点击全屏
+  const toggleFullscreen = (): void => {
+    if (screenfull.isEnabled) {
+      // 切换全屏状态
+      screenfull.toggle();
+    } else {
+      // 处理不支持全屏的情况
+      console.warn("Fullscreen is not supported.");
+    }
+  };
+
   // 获取当前用户信息
-  const getUserInfo = async () => {
+  const getUserInfo = async (): Promise<void> => {
     const token = localStorage.getItem("token");
     if (token !== null) {
       const res = await axios.get("/getuserinfo");
@@ -72,7 +87,7 @@ export default (): MenuComponentContextConfig => {
   const findCurrentRouterKey = (
     menuData: Array<MenuItemType>,
     currentRouterKey: string,
-  ) => {
+  ): void => {
     // 如果面包屑数组没有当前这个路由信息 就添加到面包屑数组
     if (!menuData.some((item: MenuItemType) => item.key === currentRouterKey)) {
       setBreadCrumbs((currentValue) => [
@@ -126,7 +141,7 @@ export default (): MenuComponentContextConfig => {
   };
 
   // 点击侧边路由进行跳转
-  const getMenuKey: MenuProps["onClick"] = (e) => {
+  const getMenuKey: MenuProps["onClick"] = (e): void => {
     findCurrentRouterKey(breadCrumbs, e.key);
     setBreadCrumbsActiveKey(e.key);
     pushRouter(e.key);
@@ -134,7 +149,7 @@ export default (): MenuComponentContextConfig => {
   };
 
   // 二级路由点击展开菜单触发事件
-  const menuOnOpenChange = (v: Array<string | "">) => {
+  const menuOnOpenChange = (v: Array<string | "">): void => {
     setCurrentDefaultOpenKeys(v);
   };
 
@@ -158,7 +173,7 @@ export default (): MenuComponentContextConfig => {
   };
 
   // 点击 tabs ( 切换 )
-  const breadCrumbsTabsChange = (key: string) => {
+  const breadCrumbsTabsChange = (key: string): void => {
     setBreadCrumbsActiveKey(key);
     pushRouter(key);
     setCurrentDefaultOpenKeys([findParentKey(menuItems, key)]);
@@ -166,7 +181,7 @@ export default (): MenuComponentContextConfig => {
   };
 
   // 点击关闭 tabs 按钮
-  const breadCrumbsTabsEdit = (key: string) => {
+  const breadCrumbsTabsEdit = (key: string): void => {
     const copyBreadCrumbs:
       | Array<{
           label: string;
@@ -190,7 +205,7 @@ export default (): MenuComponentContextConfig => {
   };
 
   // 刚进入页面 添加当前页面的面包屑
-  const findMenuItemByKey = (menuItems: Array<MenuItemType>) => {
+  const findMenuItemByKey = (menuItems: Array<MenuItemType>): null => {
     for (const item of menuItems) {
       if (item.key === location.pathname.split("/")[1]) {
         setBreadCrumbs((prevMianbao) => [...prevMianbao, item]);
@@ -212,21 +227,38 @@ export default (): MenuComponentContextConfig => {
     setCurrentPath(location.pathname.split("/")[1]);
   }, [menuState]);
 
+  // 全屏监听
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullScreen(screenfull.isFullscreen);
+    };
+    if (screenfull.isEnabled) {
+      screenfull.on("change", handleFullscreenChange);
+    }
+    return () => {
+      if (screenfull.isEnabled) {
+        screenfull.off("change", handleFullscreenChange);
+      }
+    };
+  }, []);
+
   // menu 菜单以及面包屑所需配置
   const menuConfig: menuConfigType = {
     collapsed,
-    currentPath,
     breadCrumbs,
+    currentPath,
+    isFullScreen,
     colorBgContainer,
     filterMenuItemsData,
     breadCrumbsActiveKey,
     currentDefaultOpenKeys,
-    breadCrumbsTabsEdit,
     getMenuKey,
-    breadCrumbsTabsChange,
     setCollapsed,
     setBreadCrumbs,
+    toggleFullscreen,
     menuOnOpenChange,
+    breadCrumbsTabsEdit,
+    breadCrumbsTabsChange,
   };
 
   return {

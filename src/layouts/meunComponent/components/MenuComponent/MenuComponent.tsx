@@ -5,7 +5,12 @@ import ShowMessage from "@/components/messageComponent/message";
 import RouterData from "@/config/Router";
 import Login from "@/pages/login/index";
 import { userInfo } from "@/recoil-stroe/userInfo";
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import {
+  FullscreenExitOutlined,
+  FullscreenOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+} from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Button, Dropdown, Layout, Menu, Tabs } from "antd";
 import { memo, useContext, useMemo } from "react";
@@ -26,16 +31,18 @@ const MenuComponent = () => {
     collapsed,
     currentPath,
     breadCrumbs,
+    isFullScreen,
     colorBgContainer,
     filterMenuItemsData,
     breadCrumbsActiveKey,
     currentDefaultOpenKeys,
-    breadCrumbsTabsEdit,
     getMenuKey,
-    breadCrumbsTabsChange,
     setCollapsed,
     setBreadCrumbs,
     menuOnOpenChange,
+    toggleFullscreen,
+    breadCrumbsTabsEdit,
+    breadCrumbsTabsChange,
   } = menuConfig;
 
   // 当前用户信息
@@ -104,14 +111,29 @@ const MenuComponent = () => {
                 />
               </div>
               <div className="user_selector_box">
-                <Dropdown menu={{ items, onClick }} placement="bottom">
-                  <span
-                    style={{ color: "#fff" }}
-                    onClick={(e: any) => e.preventDefault()}
-                  >
-                    {currentUserInfo ? currentUserInfo.username : ""}
-                  </span>
-                </Dropdown>
+                <div style={{ marginRight: "20px" }}>
+                  {!isFullScreen ? (
+                    <FullscreenOutlined
+                      style={{ color: "aqua" }}
+                      onClick={toggleFullscreen}
+                    />
+                  ) : (
+                    <FullscreenExitOutlined
+                      style={{ color: "aqua" }}
+                      onClick={toggleFullscreen}
+                    />
+                  )}
+                </div>
+                <div>
+                  <Dropdown menu={{ items, onClick }} placement="bottom">
+                    <span
+                      style={{ color: "#fff" }}
+                      onClick={(e: any) => e.preventDefault()}
+                    >
+                      {currentUserInfo ? currentUserInfo.username : ""}
+                    </span>
+                  </Dropdown>
+                </div>
               </div>
             </Header>
             <div className="bread_box">
