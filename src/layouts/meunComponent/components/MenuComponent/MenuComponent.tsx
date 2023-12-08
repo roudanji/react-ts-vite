@@ -111,16 +111,23 @@ const MenuComponent = () => {
                 />
               </div>
               <div className="user_selector_box">
-                <div style={{ marginRight: "20px" }}>
+                <div
+                  style={{
+                    marginRight: "20px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
                   {/* 全屏按钮控制 ICON */}
                   {!isFullScreen ? (
                     <FullscreenOutlined
-                      style={{ color: "aqua" }}
+                      style={{ color: "aqua", fontSize: "19px" }}
                       onClick={toggleFullscreen}
                     />
                   ) : (
                     <FullscreenExitOutlined
-                      style={{ color: "aqua" }}
+                      style={{ color: "aqua", fontSize: "19px" }}
                       onClick={toggleFullscreen}
                     />
                   )}
