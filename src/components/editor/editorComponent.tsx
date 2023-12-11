@@ -1,19 +1,17 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react-hooks/exhaustive-deps */
+import { MyEditorPropsType } from "@/@types/publicType";
 import { IDomEditor, IEditorConfig, IToolbarConfig } from "@wangeditor/editor";
 import { Editor, Toolbar } from "@wangeditor/editor-for-react";
 import "@wangeditor/editor/dist/css/style.css";
 import { useEffect, useState } from "react";
 
-type OnHtmlChangeCallback = (html: string) => void;
-
-type MyEditorProps = {
-  onHtmlChange: OnHtmlChangeCallback;
-  value?: string;
-};
-
-// todo onHtmlChange 回调获取 html 结构    value 用于回显
-const MyEditor = ({ onHtmlChange, value = "" }: MyEditorProps) => {
+// todo onHtmlChange 回调获取 html 结构    value 用于回显    height 设置编辑器固定高度
+const MyEditor = ({
+  onHtmlChange,
+  value = "",
+  height,
+}: MyEditorPropsType): JSX.Element => {
   // editor 实例
   const [editor, setEditor] = useState<IDomEditor | null>(null);
 
@@ -122,7 +120,7 @@ const MyEditor = ({ onHtmlChange, value = "" }: MyEditorProps) => {
             onHtmlChange(editor.getHtml()); // 回调拿值
           }}
           mode="default"
-          style={{ height: "500px", overflowY: "hidden" }}
+          style={{ height, overflowY: "hidden" }}
         />
       </div>
     </>

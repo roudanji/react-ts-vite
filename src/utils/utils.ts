@@ -32,5 +32,12 @@ const codeArray: Record<number, boolean> = {
   401: false,
 };
 export const isInterfaceSuccess = (codeNumber: number) => {
-  return codeArray[codeNumber] || false;
+  if (codeArray[codeNumber] !== void 996) {
+    return codeArray[codeNumber];
+  } else {
+    console.error(
+      "调用了判断接口返回值的 isInterfaceSuccess 函数，但是传入的参数在 codeArray 枚举对象中不存在",
+    );
+    return false;
+  }
 };
