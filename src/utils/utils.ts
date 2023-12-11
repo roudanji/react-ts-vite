@@ -4,13 +4,13 @@
 export const filterOption = (
   input: string,
   option?: { label: string; value: string | number },
-) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
+): boolean => (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
 /**
  * @param { data }     二进制文件流
  * @param { excelName }   导出的文件名字
  */
-export const ExportExcel = (data: any, excelName: string) => {
+export const ExportExcel = (data: any, excelName: string): void => {
   const blob = new Blob([data], {
     type: "application/vnd.ms-excel",
   });
@@ -24,15 +24,15 @@ export const ExportExcel = (data: any, excelName: string) => {
 };
 
 /**
- * @code码映射 判断接口 code 是否成功
+ * @code码映射 判断接口状态是否返回成功
  * @param { string }
  */
 const codeArray: Record<number, boolean> = {
   200: true,
   401: false,
 };
-export const isInterfaceSuccess = (codeNumber: number) => {
-  if (codeArray[codeNumber] !== void 996) {
+export const isInterfaceSuccess = (codeNumber: number): boolean => {
+  if (codeArray[codeNumber] !== void 14) {
     return codeArray[codeNumber];
   } else {
     console.error(
