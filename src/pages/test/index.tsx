@@ -7,10 +7,7 @@ export default () => {
 
   return (
     <TestContext.Provider value={storeData}>
-      <div className="test_box">
-        <p>这里只是一个 context 开发模式的一个文件示例</p>
-        <p>vs code 可全局搜索 [context biubiu]</p>
-      </div>
+      <div className="test_box"></div>
     </TestContext.Provider>
   );
 };
