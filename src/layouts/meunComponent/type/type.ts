@@ -6,19 +6,19 @@ import { ReactNode } from "react";
 export type MenuComponentContextConfig = ReadonlyProperties<{
   menuConfig: menuConfigType;
   fullScreenConfig: fullScreenConfigType;
-  tabsBreadCrumbsConfig: any;
+  tabsBreadCrumbsConfig: tabsBreadCrumbsConfig;
 }>;
 
 // 菜单配置
 export type menuConfigType = ReadonlyProperties<{
   collapsed: boolean;
   currentPath: string;
-  currentDefaultOpenKeys: string | null | any;
-  filterMenuItemsData: any;
   colorBgContainer: any;
+  currentDefaultOpenKeys: Array<string>;
+  filterMenuItemsData: Array<MenuItemType>;
   getMenuKey: MenuProps["onClick"];
   setCollapsed: (params: boolean) => void;
-  setBreadCrumbs: (params: any) => void;
+  setBreadCrumbs: (params: []) => void;
   menuOnOpenChange: (params: Array<string | "">) => void;
 }>;
 
