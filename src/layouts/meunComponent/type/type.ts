@@ -23,18 +23,18 @@ export type menuConfigType = ReadonlyProperties<{
 }>;
 
 // 全屏功能所需配置
-export type fullScreenConfigType = {
+export type fullScreenConfigType = ReadonlyProperties<{
   isFullScreen: boolean;
   toggleFullscreen: () => void;
-};
+}>;
 
 // tabs 面包屑配置
-export type tabsBreadCrumbsConfig = {
+export type tabsBreadCrumbsConfig = ReadonlyProperties<{
   breadCrumbs: Array<{ label: string; key: string; icon?: ReactNode }>;
   breadCrumbsActiveKey: string;
   breadCrumbsTabsEdit: (params: string | any) => void;
   breadCrumbsTabsChange: (params: string) => void;
-};
+}>;
 
 // 菜单类型配置
 export type MenuItemType = ReadonlyProperties<{

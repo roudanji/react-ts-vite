@@ -130,8 +130,8 @@ export default request;
 
 // import { request } from "@/utils/request";
 
-// export const testGet = (): Promise<ResponseType> => request.get("/get/interface");
+// export const testGet = (): Promise<ResponseInterfaceReturnedValue> => request.get("/get/interface");
 
-// export const testPost = (data:params): Promise<ResponseType> => request.post("/post/interface",data)
+// export const testPost = (data:params): Promise<ResponseInterfaceReturnedValue> => request.post("/post/interface",data)
 
-// export const testDelete = (id:number): Promise<ResponseType> => request.delete(`/delete/interface/${id}`);
+// export const testDelete = (id:number): Promise<ResponseInterfaceReturnedValue> => request.delete(`/delete/interface/${id}`);
