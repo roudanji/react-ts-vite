@@ -15,7 +15,7 @@ export default (): LoginContextConfig => {
   const [loginForm] = useForm();
 
   // 登录表单校验通过
-  const loginOnFinish = async (values: loginFormType) => {
+  const loginOnFinish = async (values: loginFormType): Promise<void> => {
     const res = await axios.post("/login", values);
     if (isInterfaceSuccess(res.data.code)) {
       const { token } = res.data;

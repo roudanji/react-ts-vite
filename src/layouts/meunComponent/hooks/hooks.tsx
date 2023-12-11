@@ -16,7 +16,6 @@ import {
   menuConfigType,
   tabsBreadCrumbsConfig,
 } from "../type/type";
-
 export default (): MenuComponentContextConfig => {
   const menuState = useRecoilValue(menuUseeffect);
 
@@ -73,7 +72,6 @@ export default (): MenuComponentContextConfig => {
 
         const { jurisdiction } = res.data.data;
         // 读取成功之后 动态生成路由
-
         const result = findMenuDataByKey(menuItems, jurisdiction).filter(
           (item) => item !== null,
         ) as Array<MenuItemType>;
@@ -89,9 +87,11 @@ export default (): MenuComponentContextConfig => {
   ): void => {
     // 如果面包屑数组没有当前这个路由信息 就添加到面包屑数组
     if (!menuData.some((item: MenuItemType) => item.key === currentRouterKey)) {
-      setBreadCrumbs((currentValue) =>
-        currentValue.concat(findMenuItems(menuItems, currentRouterKey) || []),
-      );
+      setBreadCrumbs((currentValue) => {
+        return currentValue.concat(
+          findMenuItems(menuItems, currentRouterKey) || [],
+        );
+      });
     }
   };
 
@@ -162,7 +162,11 @@ export default (): MenuComponentContextConfig => {
       if (item.key === routerKey) {
         return item;
       }
-      if (item.children && Array.isArray(item.children)) {
+      if (
+        Array.isArray(item.children) &&
+        item.children &&
+        item.children.length
+      ) {
         const result = findMenuItems(item.children, routerKey);
         if (result) {
           return result;

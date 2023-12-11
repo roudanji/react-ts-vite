@@ -1,14 +1,14 @@
 import { message } from "antd";
 
 type MessageType =
+  | "ADD"
+  | "EDIT"
+  | "DELETE"
   | "success"
   | "info"
   | "warning"
   | "error"
-  | "loading"
-  | "ADD"
-  | "DELETE"
-  | "EDIT";
+  | "loading";
 
 const ShowMessage = (
   type: MessageType,
@@ -22,23 +22,23 @@ const ShowMessage = (
   switch (type) {
     case "ADD":
       messageType = "success";
-      messageContent = content || "新增成功";
+      messageContent = content ?? "新增成功";
       break;
     case "DELETE":
       messageType = "success";
-      messageContent = content || "删除成功";
+      messageContent = content ?? "删除成功";
       break;
     case "EDIT":
       messageType = "success";
-      messageContent = content || "编辑成功";
+      messageContent = content ?? "编辑成功";
       break;
     default:
-      messageContent = content || "";
+      messageContent = content ?? "";
   }
 
   const config = {
     content: messageContent,
-    duration: duration || 2.5,
+    duration: duration ?? 2.5,
     onClose,
   };
 

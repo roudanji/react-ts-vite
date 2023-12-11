@@ -2,13 +2,12 @@ import {
   AliwangwangOutlined,
   CreditCardOutlined,
   EditOutlined,
-  ProjectOutlined,
-  SendOutlined,
+  LineChartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { MenuItemType } from "./type/type";
 
-export const menuItems: MenuItemType[] = [
+export const menuItems: Array<MenuItemType> = [
   {
     key: "home",
     icon: <UserOutlined />,
@@ -20,6 +19,11 @@ export const menuItems: MenuItemType[] = [
     label: "测逝",
   },
   {
+    key: "echarts",
+    icon: <LineChartOutlined />,
+    label: "图表",
+  },
+  {
     key: "editor",
     icon: <EditOutlined />,
     label: "editor",
@@ -28,16 +32,6 @@ export const menuItems: MenuItemType[] = [
         key: "editor-editor",
         icon: <CreditCardOutlined />,
         label: "编辑器",
-      },
-      {
-        key: "editor-roudancongji",
-        icon: <SendOutlined />,
-        label: "肉蛋葱鸡",
-      },
-      {
-        key: "editor-lajiaochaorou",
-        icon: <ProjectOutlined />,
-        label: "辣椒炒肉",
       },
     ],
   },

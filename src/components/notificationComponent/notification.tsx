@@ -10,15 +10,16 @@ type OptionsType = {
   style?: Record<any, number | string>;
 };
 
-const ShowNotification = (type: NotificationType, options: OptionsType) => {
-  const { placement, message, description, duration, style } = options;
-
+const ShowNotification = (
+  type: NotificationType,
+  { placement, message, description, duration, style }: OptionsType,
+) => {
   (notification as any)[type]({
-    placement: placement || "bottomRight",
+    placement: placement ?? "bottomRight",
     message: <b>{message}</b>,
     description,
-    duration: duration || null,
-    style: style || { width: "100%" },
+    duration: duration ?? null,
+    style: style ?? { width: "100%" },
   });
 };
 
