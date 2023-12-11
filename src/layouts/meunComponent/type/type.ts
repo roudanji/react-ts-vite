@@ -41,5 +41,5 @@ export type MenuItemType = ReadonlyProperties<{
   key: string;
   icon?: React.ReactNode;
   label: string;
-  children?: MenuItemType[];
+  children?: Array<MenuItemType>;
 }>;

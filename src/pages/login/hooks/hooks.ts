@@ -3,7 +3,6 @@ import { menuUseeffect } from "@/recoil-stroe/menuUseeffect";
 import { isInterfaceSuccess } from "@/utils/utils";
 import { useForm } from "antd/es/form/Form";
 import axios from "axios";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { loginFormType } from "../type/hooksType";
@@ -28,10 +27,6 @@ export default (): LoginContextConfig => {
       showMessage("error", res.data.message);
     }
   };
-
-  useEffect(() => {
-    localStorage.removeItem("token");
-  }, []);
 
   // 登录配置对象
   const loginConfig: loginConfigType = {

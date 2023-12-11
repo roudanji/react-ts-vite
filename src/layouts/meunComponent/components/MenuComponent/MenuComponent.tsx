@@ -43,11 +43,11 @@ const MenuComponent = () => {
     menuOnOpenChange,
   } = menuConfig;
 
-  // tabs 面包屑配置
+  // tabs 菜单记录面包屑配置
   const {
     breadCrumbs,
-    breadCrumbsTabsEdit,
     breadCrumbsActiveKey,
+    breadCrumbsTabsEdit,
     breadCrumbsTabsChange,
   } = tabsBreadCrumbsConfig;
 
@@ -58,16 +58,17 @@ const MenuComponent = () => {
   const currentUserInfo = useRecoilValue(userInfo);
 
   const onClick: MenuProps["onClick"] = ({ key }) => {
-    if (key === "1") {
+    if (key === "loginExit") {
       setBreadCrumbs([]);
       ShowMessage("success", "已退出，请重新登录");
       pushRouter("/login");
+      localStorage.removeItem("token");
     }
   };
   const items: MenuProps["items"] = [
     {
       label: "退出登录",
-      key: "1",
+      key: "loginExit",
     },
   ];
 

@@ -1,17 +1,18 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { MyEditorPropsType } from "@/@types/publicType";
+import { EditorParamsConfigType } from "@/@types/publicType";
 import { IDomEditor, IEditorConfig, IToolbarConfig } from "@wangeditor/editor";
 import { Editor, Toolbar } from "@wangeditor/editor-for-react";
 import "@wangeditor/editor/dist/css/style.css";
 import { useEffect, useState } from "react";
 
-// todo onHtmlChange 回调获取 html 结构    value 用于回显    height 设置编辑器固定高度
+// todo onHtmlChange 回调获取 html 结构    value 用于回显    height 设置编辑器固定高度    placeholder  默认提示
 const MyEditor = ({
   onHtmlChange,
   value = "",
   height,
-}: MyEditorPropsType): JSX.Element => {
+  placeholder,
+}: EditorParamsConfigType): JSX.Element => {
   // editor 实例
   const [editor, setEditor] = useState<IDomEditor | null>(null);
 
@@ -89,10 +90,9 @@ const MyEditor = ({
 
   // 编辑器配置
   const editorConfig: Partial<IEditorConfig> = {
-    placeholder: "请输入内容...",
+    placeholder,
   };
 
-  // 及时销毁 editor ，重要！
   useEffect(() => {
     return () => {
       // eslint-disable-next-line eqeqeq, no-eq-null

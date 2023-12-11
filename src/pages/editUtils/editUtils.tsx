@@ -1,4 +1,4 @@
-import { MyEditorPropsType } from "@/@types/publicType";
+import { EditorParamsConfigType } from "@/@types/publicType";
 import CustomEditor from "@/components/editor/editorComponent";
 import { useState } from "react";
 import "./editUtils.less";
@@ -9,10 +9,11 @@ export default () => {
   // 回调拿处理之后的 html
   const getHtmlDomData = (value: string) => setEditorHtml(value);
 
-  const CustomEditorConfig: MyEditorPropsType = {
+  const CustomEditorConfig: EditorParamsConfigType = {
     onHtmlChange: getHtmlDomData,
     value: "",
     height: "500px",
+    placeholder: "请输入内容......",
   };
 
   return (

@@ -14,8 +14,9 @@ export type ResponseType = {
 // 编辑器类型
 type OnHtmlChangeCallback = (html: string) => void;
 // 编辑器类型
-export type MyEditorPropsType = {
+export type EditorParamsConfigType = {
   onHtmlChange: OnHtmlChangeCallback;
   height: string;
   value?: string;
+  placeholder?: string;
 };
